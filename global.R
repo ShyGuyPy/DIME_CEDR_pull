@@ -1,5 +1,6 @@
+#source("code/global/import_packages.R", local = TRUE)
+source("code/global/load_packages.R", local = TRUE)
 source("CEDR_inputs.R", local = TRUE)
-source("code/global/import_packages.R", local = TRUE)
 source("code/functions/pull_data_func.R", local = TRUE)
 
 #-----CEDR api url-------------------------------------
@@ -8,11 +9,15 @@ todays.date <- format(Sys.Date(), "%m-%d-%Y")
 #------------------------------------------------------
 
 
+#----------this is the apps root directory---------------
+project.dir <- rprojroot::find_rstudio_root_file()
+#---------------------------------------------------------
+
 #----------------date-range------------------------------
 # needs to be a user input, can't stay hard coded here
 
 #this is the minimum date to be included
-min_date = "8-01-2019"#
+min_date = "01-01-2018"#1970"#
 
 #this is the maximum date to be included, add the variable todays.date into this variable if you want the most recent data
 max_date = todays.date#
@@ -61,16 +66,14 @@ station.vec <- file.path(url.root,
 #                      "TidalPlankton",
 #                      "Reported",
 #                      min_date,
-#                      max_date, 
+#                      max_date,
 #                      phyto_num,
 #                      "Station",
 #                      paste(station.vec, collapse = ",")) %>%
-#   fromJSON() %>% 
+#   fromJSON() %>%
 #   clean_up()
 #--------------------------------------------------------
 
-#----------this is the apps root directory---------------
-project.dir <- rprojroot::find_rstudio_root_file()
-#---------------------------------------------------------
+
 
 
