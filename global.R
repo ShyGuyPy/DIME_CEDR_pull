@@ -2,6 +2,8 @@
 source("code/global/load_packages.R", local = TRUE)
 source("CEDR_inputs.R", local = TRUE)
 source("code/functions/pull_data_func.R", local = TRUE)
+source("config/paths.R", local = TRUE)
+
 
 #-----CEDR api url-------------------------------------
 url.root <- "http://datahub.chesapeakebay.net/api.JSON"

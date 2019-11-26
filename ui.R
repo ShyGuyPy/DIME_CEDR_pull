@@ -27,14 +27,32 @@ dashboardSidebar(
                "Download data",
                icon = NULL,
                width = "220px"
-               )
+               ),
   #E----------------------end of action buttons------------
   
+  #S----------------------action buttons--------------------
+  actionButton("data_to_download",
+               "Plot Data",
+               icon = NULL,
+               width = "220px")
+  #E----------------------end of action buttons------------
   ),#end of dashboardsidebar
 #E------------------end of sidebar-------------------------
 
 #S-----------------dashboard body--------------------------
-dashboardBody(),#end of dashboardbody
+dashboardBody(  
+  fluidRow(
+  column(
+    width = 8,
+    box(
+      title = NULL,
+      width = NULL,
+    
+  plotOutput("plot_the_data", width = "500px", height = "500px" )
+    )#end of box
+  )#end col
+  )#end fluidrow
+),#end of dashboardbody
 #E----------------end of dashboard body-----------------------
 
 )#end of dashboard page
