@@ -5,7 +5,7 @@ observeEvent(input$download_phyto_data, {
     data.df <- file.path(url.root,
                          "LivingResources",
                          "TidalPlankton",
-                         "Reported",
+                         "MonitorEvent",
                          min_date,
                          max_date,
                          phyto_num,
@@ -13,26 +13,26 @@ observeEvent(input$download_phyto_data, {
                          paste(station.vec, collapse = ",")) %>%
       fromJSON() %>%
       clean_up() %>%
-      data.table::fwrite(file.path(project.dir, data_path, "cedr_phyto_taxa_raw.csv"))
+      data.table::fwrite(file.path(project.dir, data_path, "cedr_phyto_raw.csv"))
     
     # print(input$plot_range[1])
     # print(input$plot_range[2])
     
-    data_tweak.df <- data.table::fread(paste0(data_path, "cedr_phyto_taxa_raw.csv"),
+    data_tweak.df <- data.table::fread(paste0(data_path, "cedr_phyto_raw.csv"),
                                        data.table = FALSE) %>%
       filter(sampledate >= input$plot_range[1],
              sampledate <= input$plot_range[2]) %>%
-      data.table::fwrite(file.path(project.dir, data_path, "cedr_phyto_taxa_tweak.csv"))
+      data.table::fwrite(file.path(project.dir, data_path, "cedr_phyto_tweak.csv"))
     # filter data down to user specified date range
     # data_date_range.df <- data.df %>%
     # filter(sampledate >= input$plot_range[1],
     #        sampledate <= input$plot_range[2])
     # %>%
-    #  data.table::fwrite(file.path(project.dir, "data/CEDR", "cedr_phyto_taxa_daterange.csv"))
+    #  data.table::fwrite(file.path(project.dir, "data/CEDR", "cedr_phyto_daterange.csv"))
     
     # data_output.df <- data_date_range.df %>% 
     #   mutate(reportingvalue = as.character(reportingvalue)) %>% 
-    #   data.table::fwrite(file.path(project.dir, "data/CEDR", "cedr_phyto_taxa_output.csv"))
+    #   data.table::fwrite(file.path(project.dir, "data/CEDR", "cedr_phyto_output.csv"))
     
     #increment progress bar
     incProgress(1/2) 

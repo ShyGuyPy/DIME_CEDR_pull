@@ -31,7 +31,7 @@ dashboardSidebar(
   #E----------------------end of action buttons------------
   
   #S----------------------action buttons--------------------
-  actionButton("data_to_download",
+  actionButton("data_into_plot",
                "Plot Data",
                icon = NULL,
                width = "220px")
