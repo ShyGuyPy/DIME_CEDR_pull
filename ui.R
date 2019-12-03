@@ -41,17 +41,10 @@ dashboardSidebar(
 
 #S-----------------dashboard body--------------------------
 dashboardBody(  
-  fluidRow(
-  column(
-    width = 8,
-    box(
-      title = NULL,
-      width = NULL,
-    
-  plotOutput("plot_the_data", width = "500px", height = "500px" )
-    )#end of box
-  )#end col
-  )#end fluidrow
+  navbarPage(title=NULL,
+            source("code/ui/local_data_ui.R", local = TRUE)$value,
+            source("code/ui/plot_data_ui.R", local = TRUE)$value
+  )
 ),#end of dashboardbody
 #E----------------end of dashboard body-----------------------
 
