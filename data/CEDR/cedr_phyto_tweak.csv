@@ -1,4 +1,6 @@
 huc8,catalogingunitdescription,datatype,source,sampletype,sampledate,layer,latitude,longitude,pdepth,salzone,samplevolume,units,station,totaldepth,sampletime
+,,phytp,odu/pel,c,2018-06-06t00:00:00,ap,37.58847,-76.16216,9,m,15,liter,cb6.1,12,08:32:00
+,,phytp,odu/pel,c,2018-06-06t00:00:00,bp,37.58847,-76.16216,11.5,p,15,liter,cb6.1,12,08:32:00
 ,,phytp,odu/pel,c,2018-07-11t00:00:00,ap,37.58847,-76.16216,4,m,15,liter,cb6.1,13,07:48:00
 ,,phytp,odu/pel,c,2018-07-11t00:00:00,bp,37.58847,-76.16216,12.5,p,15,liter,cb6.1,13,07:48:00
 ,,phytp,odu/pel,c,2018-08-07t00:00:00,ap,37.58847,-76.16216,3,m,15,liter,cb6.1,13,15:20:00
@@ -21,6 +23,8 @@ huc8,catalogingunitdescription,datatype,source,sampletype,sampledate,layer,latit
 ,,phytp,odu/pel,c,2018-11-20t00:00:00,bp,37.23653,-76.20799,9.5,p,15,liter,cb6.4,10,09:03:00
 ,,phytp,odu/pel,c,2018-12-12t00:00:00,ap,37.23653,-76.20799,7,m,15,liter,cb6.4,10,07:52:00
 ,,phytp,odu/pel,c,2018-12-12t00:00:00,bp,37.23653,-76.20799,9.5,p,15,liter,cb6.4,10,07:52:00
+,,phytp,odu/pel,c,2018-06-06t00:00:00,ap,37.22875,-76.05383,1,p,15,liter,cb7.3e,22,12:22:00
+,,phytp,odu/pel,c,2018-06-06t00:00:00,bp,37.22875,-76.05383,21.5,p,15,liter,cb7.3e,22,12:22:00
 ,,phytp,odu/pel,c,2018-07-11t00:00:00,ap,37.22875,-76.05383,5,p,15,liter,cb7.3e,19,12:06:00
 ,,phytp,odu/pel,c,2018-07-11t00:00:00,bp,37.22875,-76.05383,18.5,p,15,liter,cb7.3e,19,12:06:00
 ,,phytp,odu/pel,c,2018-08-06t00:00:00,ap,37.22875,-76.05383,5,m,15,liter,cb7.3e,20,11:50:00
@@ -31,6 +35,8 @@ huc8,catalogingunitdescription,datatype,source,sampletype,sampledate,layer,latit
 ,,phytp,odu/pel,c,2018-11-12t00:00:00,bp,37.22875,-76.05383,19.5,p,15,liter,cb7.3e,20,12:04:00
 ,,phytp,odu/pel,c,2018-12-13t00:00:00,ap,37.22875,-76.05383,1,m,15,liter,cb7.3e,22,12:16:00
 ,,phytp,odu/pel,c,2018-12-13t00:00:00,bp,37.22875,-76.05383,21.5,p,15,liter,cb7.3e,22,12:16:00
+,,phytp,odu/pel,c,2018-06-07t00:00:00,ap,36.9957,-76.02048,1,p,15,liter,cb7.4,14,08:59:00
+,,phytp,odu/pel,c,2018-06-07t00:00:00,bp,36.9957,-76.02048,13.5,p,15,liter,cb7.4,14,08:59:00
 ,,phytp,odu/pel,c,2018-07-11t00:00:00,ap,36.9957,-76.02048,4,p,15,liter,cb7.4,14,13:42:00
 ,,phytp,odu/pel,c,2018-07-11t00:00:00,bp,36.9957,-76.02048,13.5,p,15,liter,cb7.4,14,13:42:00
 ,,phytp,odu/pel,c,2018-08-06t00:00:00,ap,36.9957,-76.02048,4,p,15,liter,cb7.4,14,09:16:00
@@ -43,6 +49,8 @@ huc8,catalogingunitdescription,datatype,source,sampletype,sampledate,layer,latit
 ,,phytp,odu/pel,c,2018-11-12t00:00:00,bp,36.9957,-76.02048,14.5,p,15,liter,cb7.4,15,09:46:00
 ,,phytp,odu/pel,c,2018-12-13t00:00:00,ap,36.9957,-76.02048,2,m,15,liter,cb7.4,15,14:35:00
 ,,phytp,odu/pel,c,2018-12-13t00:00:00,bp,36.9957,-76.02048,14.5,p,15,liter,cb7.4,15,14:35:00
+,,phytp,odu/pel,c,2018-06-06t00:00:00,ap,37.5968,-76.28467,2,m,15,liter,le3.6,9,09:20:00
+,,phytp,odu/pel,c,2018-06-06t00:00:00,bp,37.5968,-76.28467,8.5,m,15,liter,le3.6,9,09:20:00
 ,,phytp,odu/pel,c,2018-07-11t00:00:00,ap,37.5968,-76.28467,4,m,15,liter,le3.6,9,08:43:00
 ,,phytp,odu/pel,c,2018-07-11t00:00:00,bp,37.5968,-76.28467,8.5,m,15,liter,le3.6,9,08:43:00
 ,,phytp,odu/pel,c,2018-08-06t00:00:00,ap,37.5968,-76.28467,4,m,15,liter,le3.6,9,16:04:00
@@ -65,6 +73,7 @@ huc8,catalogingunitdescription,datatype,source,sampletype,sampledate,layer,latit
 ,,phytp,odu/pel,c,2018-11-12t00:00:00,bp,36.99903,-76.31328,7.5,m,15,liter,le5.5-w,8,07:46:00
 ,,phytp,odu/pel,c,2018-12-11t00:00:00,ap,36.99903,-76.31328,2,m,15,liter,le5.5-w,7,11:23:00
 ,,phytp,odu/pel,c,2018-12-11t00:00:00,bp,36.99903,-76.31328,6.5,m,15,liter,le5.5-w,7,11:23:00
+,,phytp,odu/pel,c,2018-06-12t00:00:00,ap,37.9173,-76.8222,1,n,15,liter,ret3.1,6,12:50:00
 ,,phytp,odu/pel,c,2018-07-05t00:00:00,ap,37.9173,-76.8222,1,n,15,liter,ret3.1,4,13:15:00
 ,,phytp,odu/pel,c,2018-08-14t00:00:00,ap,37.9173,-76.8222,1,n,15,liter,ret3.1,6,12:30:00
 ,,phytp,odu/pel,c,2018-09-11t00:00:00,ap,37.9173,-76.8222,2,n,15,liter,ret3.1,4,12:25:00
@@ -78,9 +87,11 @@ huc8,catalogingunitdescription,datatype,source,sampletype,sampledate,layer,latit
 ,,phytp,odu/pel,c,2018-08-07t00:00:00,ap,37.20294,-76.78219,2,n,15,liter,ret5.2,9,10:00:00
 ,,phytp,odu/pel,c,2018-09-05t00:00:00,ap,37.20294,-76.78219,1,n,15,liter,ret5.2,11,10:30:00
 ,,phytp,odu/pel,c,2018-10-02t00:00:00,ap,37.20294,-76.78219,2,n,15,liter,ret5.2,11,10:20:00
+,,phytp,odu/pel,c,2018-06-12t00:00:00,ap,36.76987,-76.29605,3,n,15,liter,sbe5,7,10:45:00
 ,,phytp,odu/pel,c,2018-07-18t00:00:00,ap,36.76987,-76.29605,2,n,15,liter,sbe5,9,11:50:00
 ,,phytp,odu/pel,c,2018-08-15t00:00:00,ap,36.76987,-76.29605,2,n,15,liter,sbe5,4,11:00:00
 ,,phytp,odu/pel,c,2018-10-22t00:00:00,ap,36.76987,-76.29605,4,n,15,liter,sbe5,6,11:30:00
+,,phytp,odu/pel,c,2018-06-12t00:00:00,ap,38.01847,-76.90928,1,n,15,liter,tf3.3,7,13:20:00
 ,,phytp,odu/pel,c,2018-07-05t00:00:00,ap,38.01847,-76.90928,2,n,15,liter,tf3.3,6,13:40:00
 ,,phytp,odu/pel,c,2018-08-14t00:00:00,ap,38.01847,-76.90928,1,n,15,liter,tf3.3,7,13:00:00
 ,,phytp,odu/pel,c,2018-09-11t00:00:00,ap,38.01847,-76.90928,1,n,15,liter,tf3.3,8,12:55:00
