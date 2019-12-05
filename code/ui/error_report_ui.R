@@ -1,12 +1,38 @@
 tabPanel("Error Report",
-         fluidRow(
-           column(
-             width = 8,
-             box(
-               title = NULL,
-               width = NULL,
-               
-             )#end of box
-           )#end col
-         )#end fluidrow
-) #end of tabPanel
+         
+
+             fluidRow(
+               column(
+                 width = 8,
+                 conditionalPanel(condition = "data_na_percent >=  .05",
+                 box(
+                   title = "FAIL",
+                   width = NULL,
+                   
+                 )#end of box
+                 ),#end of conditional panel
+                 conditionalPanel(condition = "data_na_percent < .05",
+                                  box(
+                                    title = "PASS",
+                                    width = NULL,
+                                    
+                                  )#end of box
+                 )#end of conditional panel
+               )#end col
+             )#end fluidrow
+          ) #end of tabPanel
+# 
+#          
+#          conditionalPanel(condition = "test_condtion ==  TRUE",
+#                           fluidRow(
+#                             column(
+#                               width = 8,
+#                               box(
+#                                 title = "PASS",
+#                                 width = NULL,
+#                                 
+#                               )#end of box
+#                             )#end col
+#                           )#end fluidrow
+#          )#end of conditional panel
+# ) #end of tabPanel

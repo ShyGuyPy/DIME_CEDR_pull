@@ -1,12 +1,16 @@
+#--------------paths and packages----------------------
 #source("code/global/import_packages.R", local = TRUE)
 source("code/global/load_packages.R", local = TRUE)
 source("CEDR_inputs.R", local = TRUE)
-source("code/functions/pull_data_func.R", local = TRUE)
 source("config/paths.R", local = TRUE)
+#------------------------------------------------------
 
+#----functions-----------------------------------------
+source("code/functions/CEDR_pull_func.R", local = TRUE)
+#------------------------------------------------------
 
 #-----CEDR api url-------------------------------------
-url.root <- "http://datahub.chesapeakebay.net/api.JSON"
+CEDR_url <- "http://datahub.chesapeakebay.net/api.JSON"
 todays.date <- format(Sys.Date(), "%m-%d-%Y")
 #------------------------------------------------------
 
@@ -48,7 +52,7 @@ clean_up <- function(x) {
 
 #-----create a station vector for us in data pull------
 #temporary placement
-station.vec <- file.path(url.root,
+station.vec <- file.path(CEDR_url,
                          "LivingResources",
                          "TidalPlankton",
                          "Reported",
@@ -61,20 +65,10 @@ station.vec <- file.path(url.root,
 
 #------------------------------------------------------
 
-#-------------pull the data----------------------------
-#temporary placement----should be in functons
-# data.df <- file.path(url.root,
-#                      "LivingResources",
-#                      "TidalPlankton",
-#                      "Reported",
-#                      min_date,
-#                      max_date,
-#                      phyto_num,
-#                      "Station",
-#                      paste(station.vec, collapse = ",")) %>%
-#   fromJSON() %>%
-#   clean_up()
-#--------------------------------------------------------
+
+#--------------------------testing--------------------
+test_condition <- TRUE
+#-----------------------------------------------------
 
 
 

@@ -23,7 +23,7 @@ dashboardSidebar(
   #E---------------------end date input--------------------
   
   #S----------------------action buttons--------------------
-  actionButton("download_phyto_data",
+  actionButton("download_data",
                "Download data",
                icon = NULL,
                width = "220px"
