@@ -7,6 +7,7 @@ source("config/paths.R", local = TRUE)
 
 #----functions-----------------------------------------
 source("code/functions/CEDR_pull_func.R", local = TRUE)
+source("code/functions/check_data_func.R", local = TRUE)
 #------------------------------------------------------
 
 #-----CEDR api url-------------------------------------
