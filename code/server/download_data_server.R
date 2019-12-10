@@ -12,9 +12,10 @@ observeEvent(input$download_data, {
                                        data.table = FALSE) %>%
       filter(sampledate >= input$plot_range[1],
              sampledate <= input$plot_range[2]) %>%
-      data.table::fwrite(file.path(project.dir, data_path, "cedr_wq_tweak.csv")) #%>%
+      data.table::fwrite(file.path(project.dir, data_path, "cedr_wq_tweak.csv")) %>%
       
-      
+      #run datetime function on dataframe
+      to_date_time()
     
 
 

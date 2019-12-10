@@ -1,0 +1,7 @@
+#takes the date from the sampledate object minus the blank time stamp and combines it
+# with sampledate to create a proper datetime object
+to_date_time <- function(dataframe) {
+  dataframe %>%
+    mutate(sampledatetime = paste0(substr(sampledate, start = 1, stop = 11), sampletime))
+}
+    

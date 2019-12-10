@@ -8,7 +8,11 @@ source("config/paths.R", local = TRUE)
 #----functions-----------------------------------------
 source("code/functions/CEDR_pull_func.R", local = TRUE)
 source("code/functions/check_data_func.R", local = TRUE)
+source("code/functions/clean_func.R", local = TRUE)
+source("code/functions/date_time_func.R", local = TRUE)
 #------------------------------------------------------
+
+pass_fail = "testing"
 
 #-----CEDR api url-------------------------------------
 CEDR_url <- "http://datahub.chesapeakebay.net/api.JSON"
@@ -33,21 +37,21 @@ max_date = todays.date#
 
 #-----------------clean data----------------------------
 #should be in functions
-clean_string <- function(x) {
-  x %>% 
-    stringr::str_trim() %>% 
-    tolower() %>% 
-    stringr::str_replace_all("\\s+", " ") %>% 
-    stringr::str_replace_all(" ", "_") %>%  
-    if_else(. == "", as.character(NA), .)
-}
-
-clean_up <- function(x) {
-  x %>% 
-    rename_all(clean_string) %>% 
-    mutate_if(is.character, funs(clean_string))%>% 
-    distinct()
-}
+# clean_string <- function(x) {
+#   x %>% 
+#     stringr::str_trim() %>% 
+#     tolower() %>% 
+#     stringr::str_replace_all("\\s+", " ") %>% 
+#     stringr::str_replace_all(" ", "_") %>%  
+#     if_else(. == "", as.character(NA), .)
+# }
+# 
+# clean_up <- function(x) {
+#   x %>% 
+#     rename_all(clean_string) %>% 
+#     mutate_if(is.character, funs(clean_string))%>% 
+#     distinct()
+# }
 #----------------------------------------------------
 
 
