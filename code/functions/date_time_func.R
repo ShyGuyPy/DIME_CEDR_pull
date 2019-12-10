@@ -2,6 +2,6 @@
 # with sampledate to create a proper datetime object
 to_date_time <- function(dataframe) {
   dataframe %>%
-    mutate(sampledatetime = paste0(substr(sampledate, start = 1, stop = 11), sampletime))
+    mutate(sampledatetime = as.POSIXct( paste0(substr(sampledate, start = 1, stop = 10)," ", sampletime)) )
 }
     
