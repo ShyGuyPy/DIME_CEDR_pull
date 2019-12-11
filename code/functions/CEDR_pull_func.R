@@ -12,11 +12,11 @@ CEDR_pull <- function( ) {
                                           #these are the parameter variables declared in Functions and Variables section
                                           MAIN,TRIB
                                           , sep=","),#"7,16,23,24",  #projectIds
-                                  "station",
-                                  paste(station.vec, collapse = ","),
+                                  "Huc8",
+                                  paste(HUC8.vec, collapse = ","),
                                   paste(
                                           #these are the parameter variables declared in Functions and Variables section
-                                          chla,doc,pheo,salinity
+                                          CLW, DIN, DO, DOC, DON, DOP, NH4F, NO23F, NO2F, PC, PH, PN, PO4F, PP, SALINITY, SIGMA_T, SO4W, SPCOND, TALK, TDN, TDP, TN, TON, TP, TSS, TURB_NTU, WTEMP
                                           , sep=",")
         ) %>%
                 fromJSON() %>%

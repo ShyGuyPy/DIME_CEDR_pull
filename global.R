@@ -10,12 +10,16 @@ source("code/functions/CEDR_pull_func.R", local = TRUE)
 source("code/functions/check_data_func.R", local = TRUE)
 source("code/functions/clean_func.R", local = TRUE)
 source("code/functions/date_time_func.R", local = TRUE)
+source("code/functions/selection_vector_func.R", local = TRUE)
 #------------------------------------------------------
 
 pass_fail = "testing"
 
 #-----CEDR api url-------------------------------------
 CEDR_url <- "http://datahub.chesapeakebay.net/api.JSON"
+#------------------------------------------------------
+
+#-------------------todays date-----------------------
 todays.date <- format(Sys.Date(), "%m-%d-%Y")
 #------------------------------------------------------
 
@@ -57,16 +61,17 @@ max_date = todays.date#
 
 #-----create a station vector for us in data pull------
 #temporary placement
-station.vec <- file.path(CEDR_url,
-                         "LivingResources",
-                         "TidalPlankton",
-                         "Reported",
-                         min_date,
-                         max_date,
-                         phyto_num,
-                         "Station") %>%
-  fromJSON() %>%
-  pull(unique(MonitoringLocationId))
+# station.vec <- file.path(CEDR_url,
+#                          "LivingResources",
+#                          "TidalPlankton",
+#                          "Reported",
+#                          min_date,
+#                          max_date,
+#                          phyto_num,
+#                          "Station") %>%
+#   fromJSON() %>%
+#   pull(unique(MonitoringLocationId))
+HUC8.vec <- wq_selection_vector()
 
 #------------------------------------------------------
 

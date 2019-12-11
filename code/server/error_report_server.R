@@ -1,5 +1,5 @@
 #error report
-output$pass_fail <-  eventReactive(input$download_data, {
+output$pass_fail <-  eventReactive(input$error_report, {
   check_data()
   
 })

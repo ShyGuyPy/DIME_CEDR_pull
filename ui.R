@@ -20,7 +20,7 @@ dashboardSidebar(
                  end = max_date,
                  format = "yyyy-mm-dd",
                  width = NULL),
-  #E---------------------end date input--------------------
+  #E---------------------end date input---------------------
   
   #S----------------------action buttons--------------------
   actionButton("download_data",
@@ -28,7 +28,15 @@ dashboardSidebar(
                icon = NULL,
                width = "220px"
                ),
-  #E----------------------end of action buttons------------
+  #E----------------------end of action buttons-------------
+  
+  #S----------------------action buttons--------------------
+  actionButton("error_report",
+               "Report Errors",
+               icon = NULL,
+               width = "220px"
+  ),
+  #E----------------------end of action buttons-------------
   
   #S----------------------action buttons--------------------
   actionButton("data_into_plot",
