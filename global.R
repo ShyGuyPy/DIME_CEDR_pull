@@ -11,6 +11,7 @@ source("code/functions/check_data_func.R", local = TRUE)
 source("code/functions/clean_func.R", local = TRUE)
 source("code/functions/date_time_func.R", local = TRUE)
 source("code/functions/selection_vector_func.R", local = TRUE)
+source("code/functions/param_avg_func.R", local = TRUE)
 #------------------------------------------------------
 
 pass_fail = "testing"

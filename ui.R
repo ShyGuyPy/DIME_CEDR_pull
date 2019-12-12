@@ -52,7 +52,8 @@ dashboardBody(
   navbarPage(title=NULL,
             source("code/ui/error_report_ui.R", local = TRUE)$value,
             source("code/ui/local_data_ui.R", local = TRUE)$value,
-            source("code/ui/plot_data_ui.R", local = TRUE)$value
+            source("code/ui/plot_data_ui.R", local = TRUE)$value,
+            source("code/ui/map_data_ui.R", local = TRUE)$value
   )
 ),#end of dashboardbody
 #E----------------end of dashboard body-----------------------

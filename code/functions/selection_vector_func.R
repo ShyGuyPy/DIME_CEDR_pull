@@ -16,7 +16,7 @@ selection_vector <-  function(input1,input2,input3,num,location){
   return(selection.vec)
 }
 
-
+#this is the function currently being used in the working version
 wq_selection_vector <- function(){
   huc8.vec <- file.path(CEDR_url,
                         "LivingResources",

@@ -22,18 +22,4 @@ tabPanel("Error Report",
                )#end col
              )#end fluidrow
           ) #end of tabPanel
-# 
-#          
-#          conditionalPanel(condition = "test_condtion ==  TRUE",
-#                           fluidRow(
-#                             column(
-#                               width = 8,
-#                               box(
-#                                 title = "PASS",
-#                                 width = NULL,
-#                                 
-#                               )#end of box
-#                             )#end col
-#                           )#end fluidrow
-#          )#end of conditional panel
-# ) #end of tabPanel
+
