@@ -1,7 +1,7 @@
 tabPanel("Location Map",
          fluidRow(
            column(
-             width = 8,
+             width = 8
              #leaflet()
              
            )#end col
