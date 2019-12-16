@@ -12,6 +12,7 @@ source("code/functions/clean_func.R", local = TRUE)
 source("code/functions/date_time_func.R", local = TRUE)
 source("code/functions/selection_vector_func.R", local = TRUE)
 source("code/functions/param_avg_func.R", local = TRUE)
+#source("code/functions/CEDR_pull_alt_func.R", local = TRUE)
 #------------------------------------------------------
 
 pass_fail = "testing"

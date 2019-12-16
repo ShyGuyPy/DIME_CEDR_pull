@@ -3,8 +3,8 @@ observeEvent(input$data_into_plot, {
   #read file
   plot_data.df <- data.table::fread(paste0(data_path, "cedr_wq_tweak.csv"),
                                       header = TRUE,
-                                      data.table = FALSE) #%>%
-    #mutate(sampledate=as.Date(sampledate))
+                                      data.table = FALSE) %>%
+  filter(parameter == "spcond")
   
   
   output$plot_the_data <- renderPlot({ggplot(
