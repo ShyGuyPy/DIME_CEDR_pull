@@ -16,7 +16,9 @@ CEDR_pull <- function( ) {
                                   paste(HUC8.vec, collapse = ","),
                                   paste(
                                           #these are the parameter variables declared in Functions and Variables section
-                                          CLW, DIN, DO, DOC, DON, DOP, NH4F, NO23F, NO2F, PC, PH, PN, PO4F, PP, SALINITY, SIGMA_T, SO4W, SPCOND, TALK, TDN, TDP, TN, TON, TP, TSS, TURB_NTU, WTEMP
+                                          #CLW, DIN, DO, DOC, DON, DOP, NH4F, NO23F, NO2F, PC, PH, PN, PO4F, PP, SALINITY, SIGMA_T, SO4W, 
+                                          SPCOND
+                                          #, TALK, TDN, TDP, TN, TON, TP, TSS, TURB_NTU, WTEMP
                                           , sep=",")
         ) %>%
                 fromJSON() %>%
