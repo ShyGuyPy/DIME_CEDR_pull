@@ -2,7 +2,7 @@
 
 # 
 # #read file
-# map_data.df <- data.table::fread(paste0(data_path, "cedr_wq_tweak.csv"),
+# map_data.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
 #                                   header = TRUE,
 #                                   data.table = FALSE) %>%
 #   filter(parameter == "spcond")

@@ -1,7 +1,7 @@
 observeEvent(input$data_into_plot, {
   
   #read file
-  plot_data.df <- data.table::fread(paste0(data_path, "cedr_wq_tweak.csv"),
+  plot_data.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
                                       header = TRUE,
                                       data.table = FALSE) %>%
   filter(parameter == "spcond")
