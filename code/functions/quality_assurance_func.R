@@ -18,3 +18,22 @@ check_data <-  function(){
     return(data_check)
 
 }
+
+
+check_problems <- function(){
+  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+                                        data.table = FALSE)
+
+  if("problem" %in% colnames(data_modified.df))
+  {
+
+  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+                                        data.table = FALSE)
+
+  data_problems.df <- data_modified.df %>%
+    filter(!is.na(problem )) %>%
+  
+  data.table::fwrite(file.path(project.dir, data_path, "qa_test.csv"))
+
+  }
+}

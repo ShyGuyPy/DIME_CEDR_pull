@@ -7,7 +7,7 @@ source("config/paths.R", local = TRUE)
 
 #----functions-----------------------------------------
 source("code/functions/CEDR_pull_func.R", local = TRUE)
-source("code/functions/check_data_func.R", local = TRUE)
+source("code/functions/quality_assurance_func.R", local = TRUE)
 source("code/functions/clean_func.R", local = TRUE)
 source("code/functions/date_time_func.R", local = TRUE)
 source("code/functions/selection_vector_func.R", local = TRUE)
@@ -34,7 +34,7 @@ project.dir <- rprojroot::find_rstudio_root_file()
 # needs to be a user input, can't stay hard coded here
 
 #this is the minimum date to be included
-min_date = "01-01-2018"#1970"#
+min_date = "01-01-1970"#2018"
 
 #this is the maximum date to be included, add the variable todays.date into this variable if you want the most recent data
 max_date = todays.date#

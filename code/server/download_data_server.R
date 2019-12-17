@@ -48,7 +48,7 @@ observeEvent(input$download_data, {
       
       to_date_time(.) %>%
       
-      data.table::fwrite(file.path(project.dir, data_path, "data_modfied.csv")) #%>%
+      data.table::fwrite(file.path(project.dir, data_path, "data_modified.csv")) #%>%
     
     #run datetime function on dataframe
     #to_date_time(.)

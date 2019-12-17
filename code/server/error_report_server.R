@@ -2,6 +2,10 @@
 output$pass_fail <-  eventReactive(input$error_report, {
   check_data()
   
+  check_problems()  
+
+  
+  
 })
 
 # data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
