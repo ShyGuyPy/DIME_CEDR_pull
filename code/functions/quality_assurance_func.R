@@ -1,3 +1,4 @@
+# S------------------------------------------check_data------------------------------------------------
 check_data <-  function(){
   ####needs an if.exst exception
     #read downloaded water quality data
@@ -16,10 +17,153 @@ check_data <-  function(){
     
     data_check <- case_when( data_na_percent >=  .05 ~ paste("FAIL ","NA percent: ",data_na_percent), data_na_percent <  .05 ~ paste("PASS ","NA percent: ",data_na_percent)) #TRUE ~ "PASS")
     return(data_check)
-
 }
+# E------------------------------------------check_data-------------------------------------------------
 
 
+# S------------------------------------------count_problems---------------------------------------------
+count_and_report_problems <-  function(problem_name, problem_description){
+  #read in data
+  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+                                        data.table = FALSE)
+  
+  #if the column problem is included in the data proceed, otherwise not
+  if("problem" %in% colnames(data_modified.df))
+  {
+    #count problem type
+    problem_count <- as.numeric(sum(data_modified.df$problem == as.character(problem_name)))
+    
+    #report problem type
+    problem_report = paste("the number of ",problem_name," = ", problem_description, "is", problem_count)
+    return(problem_report)
+  }
+}
+# E------------------------------------------count_problems---------------------------------------------
+
+
+
+
+
+# S---------------------------------------------report all problems
+#wrapper for count_and_report_problems
+report_all_problems <-  function(){
+  
+  #read in data
+  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+                                        data.table = FALSE)
+  
+#if the column problem is included in the data proceed, otherwise not
+  if("problem" %in% colnames(data_modified.df))
+  { 
+
+    
+    all_problems <- paste0(
+    count_and_report_problems("a", A),"\n ",
+    count_and_report_problems("b", B),"\n ",
+    count_and_report_problems("bb", BB),"\n ",
+    count_and_report_problems("c", C),"\n ",
+    count_and_report_problems("d", D),"\n ",
+    count_and_report_problems("dd", DD),"\n ",
+    count_and_report_problems("e", E),"\n ",
+    count_and_report_problems("f", FF),"\n ",
+    count_and_report_problems("g", GG),"\n ",
+    count_and_report_problems("i", I),"\n ",
+    count_and_report_problems("j", J),"\n ",
+    count_and_report_problems("jj", JJ),"\n ",
+    count_and_report_problems("lb", LB),"\n ",
+    count_and_report_problems("ls", LS),"\n ",
+    count_and_report_problems("lu", LU),"\n ",
+    count_and_report_problems("mm", MM),"\n ",
+    count_and_report_problems("nn", NN),"\n ",
+    count_and_report_problems("p", P),"\n ",
+    count_and_report_problems("qq", QQ),"\n ",
+    count_and_report_problems("r", R),"\n ",
+    count_and_report_problems("rr", RR),"\n ",
+    count_and_report_problems("ss", SS),"\n ",
+    count_and_report_problems("u", U),"\n ",
+    count_and_report_problems("v",V),"\n ",
+    count_and_report_problems("vv", VV),"\n ",
+    count_and_report_problems("ww", WW),"\n ",
+    count_and_report_problems("x", X),"\n "
+    )
+    
+    return(all_problems)
+    
+  }
+}
+# E---------------------------------------------
+
+
+
+
+# S------------------------------------------count_qualfier---------------------------------------------
+count_and_report_qualifiers <-  function(qualifier_name, qualifier_description){
+  #read in data
+  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+                                        data.table = FALSE)
+  
+  #if the column qualfier is included in the data proceed, otherwise not
+  if("qualifier" %in% colnames(data_modified.df))
+  {
+    #count qualifier type
+    qualifier_count <- as.numeric(sum(data_modified.df$qualifier == as.character(qualifier_name)))
+    
+    #report qualifier type
+    qualifier_report = paste("the number of ",qualifier_name," = ", qualifier_description, "is", qualifier_count)
+    return(qualifier_report)
+  }
+}
+# E------------------------------------------count_qualifier---------------------------------------------
+
+
+
+
+
+report_all_qualifiers <-  function(){
+  
+  #read in data
+  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+                                        data.table = FALSE)
+  
+  #if the column qualifier is included in the data proceed, otherwise not
+  if("qualifier" %in% colnames(data_modified.df))
+  { 
+    
+    
+    all_qualifiers <- paste0(
+      count_and_report_qualifiers("<", Less_Than),"\n ",
+      count_and_report_qualifiers(">", Greater_Than),"\n ",
+      count_and_report_qualifiers("e", E_q),"\n ",
+      count_and_report_qualifiers("g", G_q),"\n ",
+      count_and_report_qualifiers("a", A_q),"\n ",
+      count_and_report_qualifiers("u", U_q),"\n ",
+      count_and_report_qualifiers("j", J_q),"\n ",
+      count_and_report_qualifiers("n", N_q),"\n "
+      
+      
+    )
+    return(all_qualifiers)
+    
+  }
+}
+# E---------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#testing func
+#checking problem column entries
 check_problems <- function(){
   data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
                                         data.table = FALSE)
@@ -37,7 +181,11 @@ check_problems <- function(){
   data.table::fwrite(file.path(project.dir, data_path, "qa_test.csv"))
 
   
-  qq_problems = count(data_problems.df$problem == "qq")
+  qq_count <- as.numeric(sum(data_problems.df$problem == "qq"))
+  a_count <- as.numeric(sum(data_problems.df$problem == "a"))
   return(qq_problems)
   }
 }
+
+
+

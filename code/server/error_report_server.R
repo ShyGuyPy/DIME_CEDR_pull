@@ -1,9 +1,18 @@
 #error report
-output$pass_fail <-  eventReactive(input$error_report, {
+output$problems <-  eventReactive(input$error_report, {
   #check_data()
   
-  check_problems()  
+  report_all_problems()  
 
+  
+  
+})
+
+output$qualifiers <-  eventReactive(input$error_report, {
+  #check_data()
+  
+  report_all_qualifiers()  
+  
   
   
 })

@@ -1,24 +1,16 @@
 tabPanel("Error Report",
          
 
-             fluidRow(
+             fluidRow("Problem Report",
                column(
-                 width = 8,
-                 verbatimTextOutput("pass_fail")
-                 # conditionalPanel(condition = "data_na_percent >=  .05",
-                 # box(
-                 #   title = "FAIL",
-                 #   width = NULL,
-                 #   
-                 # )#end of box
-                 # ),#end of conditional panel
-                 # conditionalPanel(condition = "data_na_percent < .05",
-                 #                  box(
-                 #                    title = "PASS",
-                 #                    width = NULL,
-                 #                    
-                 #                  )#end of box
-                 # )#end of conditional panel
+                 width = 12,
+                 verbatimTextOutput("problems")
+               )#end col
+             ),#end fluidrow
+               fluidRow("Qualifier Report",
+                 column(
+                   width = 12,
+                   verbatimTextOutput("qualifiers")
                )#end col
              )#end fluidrow
           ) #end of tabPanel

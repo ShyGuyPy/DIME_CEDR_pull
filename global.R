@@ -73,6 +73,9 @@ max_date = todays.date#
 #                          "Station") %>%
 #   fromJSON() %>%
 #   pull(unique(MonitoringLocationId))
+#---------------------------------------------------------------
+
+#---------------generates a vector of huc8 ids
 HUC8.vec <- wq_selection_vector()
 
 #------------------------------------------------------

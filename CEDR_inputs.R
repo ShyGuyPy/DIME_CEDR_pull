@@ -234,7 +234,7 @@ ZNF	=	125
 
 #-------------------------------------------------------------------
 
-#-----------------
+#---------------------problem codes---------------------------------
 A = "LABORATORY ACCIDENT" 
 B = "CHEMICAL MATRIX  INTERFERENCE" 
 BB  = "TORN FILTER PAD" 
@@ -263,3 +263,15 @@ V = "SAMPLE RESULTS REJECTED DUE TO QC CRITERIA"
 VV = "STATION WAS NOT SAMPLED DUE TO BAD FIELD CONDITIONS" 
 WW = "HIGH OPTICAL DENSITY (750 NM); ACTUAL VALUE RECORDED" 
 X = "SAMPLE NOT PRESERVED PROPERLY"
+#----------------------------------------------------------------------
+
+#-----------------------qualifier codes--------------------------------
+Less_Than = "LESS THAN THE LOWER METHOD DETECTION LIMIT (MDL)" 
+Greater_Than = "GREATER THAN THE UPPER METHOD DETECTION LIMIT (MDL)"
+E_q = "ESTIMATED VALUE"
+A_q ="Actual Value"
+G_q	= "Reported Value Is Between MDL and the Practical Quantitation Level (Or Reporting Limit)"
+U_q	= "Unknown whether value is actual or estimated"
+J_q =	"Estimated value"
+N_q	= "Not detected"
+#----------------------------------------------------------------------
