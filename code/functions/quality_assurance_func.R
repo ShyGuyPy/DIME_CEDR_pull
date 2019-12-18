@@ -23,7 +23,8 @@ check_data <-  function(){
 check_problems <- function(){
   data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
                                         data.table = FALSE)
-
+  
+  #if the column problem is included in the data proceed, otherwise not
   if("problem" %in% colnames(data_modified.df))
   {
 
@@ -35,5 +36,8 @@ check_problems <- function(){
   
   data.table::fwrite(file.path(project.dir, data_path, "qa_test.csv"))
 
+  
+  qq_problems = count(data_problems.df$problem == "qq")
+  return(qq_problems)
   }
 }
