@@ -275,3 +275,20 @@ U_q	= "Unknown whether value is actual or estimated"
 J_q =	"Estimated value"
 N_q	= "Not detected"
 #----------------------------------------------------------------------
+
+
+
+#----------------------------------huc8--------------------------------
+LOWER_SUSQUEHANNA_02050306  = 20L
+SEVERN_02060004 = 24L
+LOWER_POTOMAC_02070011 = 37L
+LOWER_CHESAPEAKE_BAY_02080101 = 38L
+GREAT_WICOMICO_PIANKATANK_02080102 = 39L
+LOWER_RAPPAHANNOCK_02080104 = 41L
+YORK_02080107 = 44L
+PAMUNKEY_02080106 = 43L
+MATTAPONI_02080105 = 42L
+#-----------------------------------------------------------------------
+
+#---------------------------------huc12---------------------------------
+CHESAPEAKE_BAY_LOWER_020801010000 = 1316L

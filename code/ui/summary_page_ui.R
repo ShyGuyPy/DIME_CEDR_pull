@@ -1,4 +1,4 @@
-tabPanel("Select Local Data",
+tabPanel("Summary Page",
          fluidRow(
            column(
              width = 8
