@@ -65,8 +65,8 @@ report_all_problems <-  function(){
     count_and_report_problems("d", D),"\n ",
     count_and_report_problems("dd", DD),"\n ",
     count_and_report_problems("e", E),"\n ",
-    count_and_report_problems("f", FF),"\n ",
-    count_and_report_problems("g", GG),"\n ",
+    count_and_report_problems("ff", FF),"\n ",
+    count_and_report_problems("gg", GG),"\n ",
     count_and_report_problems("i", I),"\n ",
     count_and_report_problems("j", J),"\n ",
     count_and_report_problems("jj", JJ),"\n ",
@@ -148,7 +148,49 @@ report_all_qualifiers <-  function(){
 }
 # E---------------------------------------------
 
+#------------------------error report as table ----------------------------
+report_problems_table <- function(){
+    data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+                                                                                      data.table = FALSE) %>%
+      
+      mutate(error_code = problem) %>%
+      mutate(definition = case_when(problem == "a"~A,
+                                    problem == "b"~B,
+                                    problem == "bb"~BB,
+                                    problem == "c"~C,
+                                    problem == "d"~D,
+                                    problem == "dd"~DD,
+                                    problem == "e"~E,
+                                    problem == "ff"~FF,
+                                    problem == "gg"~GG,
+                                    problem == "i"~I,
+                                    problem == "j"~J,
+                                    problem == "jj"~JJ,
+                                    problem == "lb"~LB,
+                                    problem == "ls"~LS,
+                                    problem == "lu"~LU,
+                                    problem == "mm"~MM,
+                                    problem == "nn"~NN,
+                                    problem == "p"~P,
+                                    problem == "qq"~QQ,
+                                    problem == "r"~R,
+                                    problem == "rr"~RR,
+                                    problem == "ss"~SS,
+                                    problem == "u"~U,
+                                    problem == "v"~V,
+                                    problem == "vv"~VV,
+                                    problem == "ww"~WW,
+                                    problem == "x"~X,
+                                    TRUE~"no problem") ) %>%
+      filter(definition != "no problem") %>%
+      group_by(error_code) %>%
+      mutate(n = n()) %>%
+      ungroup() %>%
+      select(error_code,definition, n) %>%
+      unique()
 
+}
+#------------------------end error report as table------------------------
 
 
 

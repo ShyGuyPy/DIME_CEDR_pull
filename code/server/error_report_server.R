@@ -17,12 +17,14 @@ output$qualifiers <-  eventReactive(input$error_report, {
   
 })
 
-# data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
-#                                    data.table = FALSE) #%>%
+
+
+# output$test_table <-  eventReactive(input$error_report, {
+#   DT::renderDataTable({report_problems_table()})
 # 
-# data_na_count <- as.numeric(sum(is.na(data_modified.df)))
+#   
+#   
 # 
-# data_num <- nrow(data_modified.df)
-# 
-# 
-# data_na_percent <- (data_na_count / data_num)
+# })
+
+output$test_table <- DT::renderDataTable({report_problems_table()}) 

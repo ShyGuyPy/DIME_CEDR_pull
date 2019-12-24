@@ -12,6 +12,15 @@ tabPanel("Error Report",
                    width = 12,
                    verbatimTextOutput("qualifiers")
                )#end col
-             )#end fluidrow
+             ),#end fluidrow
+         
+         fluidRow("table test",
+                  column(
+                    width = 12,
+                    #renderTable(test_table)
+                    DT::dataTableOutput("test_table")
+                  )#end col
+         )#end fluidrow
+         
           ) #end of tabPanel
 
