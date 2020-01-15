@@ -49,6 +49,9 @@ dashboardSidebar(
 
 #S-----------------dashboard body--------------------------
 dashboardBody(  
+  tags$head(
+    #this links to main.css 
+    tags$link(rel = "stylesheet", type = "text/css", href = "CSS/main.css")),
   navbarPage(title=NULL,
             source("code/ui/error_report_ui.R", local = TRUE)$value,
             source("code/ui/summary_page_ui.R", local = TRUE)$value,

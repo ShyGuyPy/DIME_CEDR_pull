@@ -1,22 +1,20 @@
 #error report
-output$problems <-  eventReactive(input$error_report, {
-  #check_data()
-  
-  report_all_problems()  
 
-  
-  
-})
-
-output$qualifiers <-  eventReactive(input$error_report, {
-  #check_data()
-  
-  report_all_qualifiers()  
-  
-  
-  
-})
-
+# #on press of 'report errors' button lists problems
+# output$problems <-  eventReactive(input$error_report, {
+#   #check_data()
+#   
+#   #calls function
+#   report_all_problems()  
+# })
+# 
+# #on press of 'report errors' button lists qualifiers
+# output$qualifiers <-  eventReactive(input$error_report, {
+#   #check_data()
+#   
+#   #calls function
+#   report_all_qualifiers()  
+# })
 
 
 # output$test_table <-  eventReactive(input$error_report, {
@@ -27,4 +25,8 @@ output$qualifiers <-  eventReactive(input$error_report, {
 # 
 # })
 
-output$test_table <- DT::renderDataTable({report_problems_table()}) 
+#on launch generates a table of problems
+output$problem_table <- DT::renderDataTable({report_problems_table()}) 
+
+#on launch generates a table of qualifiers
+output$qualifier_table <- DT::renderDataTable({report_qualifiers_table()}) 

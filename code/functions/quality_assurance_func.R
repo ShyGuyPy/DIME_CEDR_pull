@@ -148,7 +148,7 @@ report_all_qualifiers <-  function(){
 }
 # E---------------------------------------------
 
-#------------------------error report as table ----------------------------
+#------------------------problem error report as table ----------------------------
 report_problems_table <- function(){
     data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
                                                                                       data.table = FALSE) %>%
@@ -190,7 +190,32 @@ report_problems_table <- function(){
       unique()
 
 }
-#------------------------end error report as table------------------------
+#------------------------end problem error report as table------------------------
+
+#------------------------qualifier error report as table ----------------------------
+report_qualifiers_table <- function(){
+  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+                                        data.table = FALSE) %>%
+    
+    mutate(error_code = qualifier) %>%
+    mutate(definition = case_when(qualifier == "<"~Less_Than,
+                                  qualifier == ">"~Greater_Than,
+                                  qualifier == "e"~E_q,
+                                  qualifier == "g"~G_q,
+                                  qualifier == "a"~A_q,
+                                  qualifier == "u"~U_q,
+                                  qualifier == "j"~J_q,
+                                  qualifier == "n"~N_q,
+                                  TRUE~"no qualifier") ) %>%
+    filter(definition != "no qualifier") %>%
+    group_by(error_code) %>%
+    mutate(n = n()) %>%
+    ungroup() %>%
+    select(error_code,definition, n) %>%
+    unique()
+  
+}
+#------------------------end qualifier error report as table------------------------
 
 
 
