@@ -76,7 +76,11 @@ max_date = todays.date#
 #---------------------------------------------------------------
 
 #---------------generates a vector of huc8 ids
-HUC8.vec <- wq_selection_vector()
+#only creates it if the CEDR url is accessible
+#this prevents the app from breaking if CEDR is down or if no internet
+if(url.exists(CEDR_url) == TRUE){
+  HUC8.vec <- wq_selection_vector()
+}
 
 #------------------------------------------------------
 
