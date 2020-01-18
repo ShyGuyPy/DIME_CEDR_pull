@@ -218,8 +218,16 @@ report_qualifiers_table <- function(){
 #------------------------end qualifier error report as table------------------------
 
 
+#------------------------error message if no data_modified.csv is present
+no_data_error <- function(){
 
+message <- "no data has been downloaded.  download data to display errors for that data."
+  
+  
 
+return(message)
+}
+#------------------------end error message if no data_modified.csv is present
 
 
 
@@ -253,6 +261,8 @@ check_problems <- function(){
   return(qq_problems)
   }
 }
+
+
 
 
 

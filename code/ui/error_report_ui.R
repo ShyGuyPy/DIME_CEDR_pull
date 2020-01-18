@@ -18,16 +18,22 @@ tabPanel("Error Report",
          fluidRow("problem table",
                   column(
                     width = 12,
-                    #renderTable(test_table)
-                    DT::dataTableOutput("problem_table")
+                    #if data has been downloaded show errors else show message
+                    if(file.exists(file.path(project.dir, data_path, "data_modified.csv"))){
+                    DT::dataTableOutput("problem_table")} else {
+                      verbatimTextOutput("no_data_error_problems")
+                    }#end of if file.exists
                   )#end col
          ),#end fluidrow
          
          fluidRow("qualifier table",
                   column(
                     width = 12,
-                    #renderTable(test_table)
-                    DT::dataTableOutput("qualifier_table")
+                    #if data has been downloaded show errors else show message
+                    if(file.exists(file.path(project.dir, data_path, "data_modified.csv"))){
+                    DT::dataTableOutput("qualifier_table")} else {
+                      verbatimTextOutput("no_data_error_qualifiers")
+                    }#end of if file.exists
                   )#end col
          )#end fluidrow
          

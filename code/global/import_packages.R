@@ -19,4 +19,5 @@ library(leaflet)
 library(rgdal)
 library(RCurl)
 library(curl)
+library(DT)
 

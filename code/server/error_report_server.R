@@ -30,3 +30,7 @@ output$problem_table <- DT::renderDataTable({report_problems_table()})
 
 #on launch generates a table of qualifiers
 output$qualifier_table <- DT::renderDataTable({report_qualifiers_table()}) 
+
+output$no_data_error_problems <- no_data_error
+
+output$no_data_error_qualifiers <- no_data_error
