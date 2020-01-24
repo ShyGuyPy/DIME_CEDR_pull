@@ -40,6 +40,15 @@ min_date = "01-01-1970"#2018"
 max_date = todays.date#
 #-------------------------------------------------------
 
+#last date data was downloaded
+last_download_date <- "no data downloaded"
+
+if(file.exists(file.path(project.dir, data_path, "data_modified.csv"))){
+  data_last.df <- data.table::fread(paste0(data_path, "data_modified.csv"))
+  last_download_date <- max(last_download_date <-data_last.df$sampledate)
+}
+
+
 
 #-----------------clean data----------------------------
 #should be in functions

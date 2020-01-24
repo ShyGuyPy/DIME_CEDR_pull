@@ -29,7 +29,8 @@ need <- c("shiny",
           "jsonlite",
           "ritis",
           "stringr",
-          "DT"
+          "DT",
+          "shinyjs"
           ) 
 # find out which packages are installed
 ins <- installed.packages()[, 1] 

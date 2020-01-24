@@ -20,4 +20,5 @@ library(rgdal)
 library(RCurl)
 library(curl)
 library(DT)
+library(shinyjs)
 
