@@ -30,7 +30,9 @@ need <- c("shiny",
           "ritis",
           "stringr",
           "DT",
-          "shinyjs"
+          "shinyjs",
+          "EGRET",
+          "dataRetrieval"
           ) 
 # find out which packages are installed
 ins <- installed.packages()[, 1] 

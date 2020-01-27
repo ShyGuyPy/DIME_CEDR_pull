@@ -7,6 +7,8 @@ source("config/paths.R", local = TRUE)
 
 #----functions-----------------------------------------
 source("code/functions/CEDR_pull_func.R", local = TRUE)
+source("code/functions/NWIS_pull_func.R", local = TRUE)
+source("code/functions/WQDP_pull_func.R", local = TRUE)
 source("code/functions/quality_assurance_func.R", local = TRUE)
 source("code/functions/clean_func.R", local = TRUE)
 source("code/functions/date_time_func.R", local = TRUE)
@@ -40,14 +42,32 @@ min_date = "01-01-1970"#2018"
 max_date = todays.date#
 #-------------------------------------------------------
 
-#last date data was downloaded
-last_download_date <- "no data downloaded"
 
-if(file.exists(file.path(project.dir, data_path, "data_modified.csv"))){
-  data_last.df <- data.table::fread(paste0(data_path, "data_modified.csv"))
+#----------------------------------------last date downloaded----------------------
+#last date CEDR data was downloaded
+last_CEDR_download_date <- "no data downloaded"
+
+if(file.exists(file.path(project.dir, cedr_path, "cedr_raw.csv"))){
+  data_last.df <- data.table::fread(paste0(cedr_path, "cedr_raw.csv"))
   last_download_date <- max(last_download_date <-data_last.df$sampledate)
 }
 
+#last date NWIS data was downloaded
+last_NWIS_download_date <- "no data downloaded"
+
+if(file.exists(file.path(project.dir, nwis_path, "nwis_raw.csv"))){
+  data_last.df <- data.table::fread(paste0(nwis_path, "nwis_raw.csv"))
+  last_download_date <- max(last_download_date <-data_last.df$sampledate)
+}
+
+#last date WQDP data was downloaded
+last_WQDP_download_date <- "no data downloaded"
+
+if(file.exists(file.path(project.dir, wqdp_path, "wqdp_raw.csv"))){
+  data_last.df <- data.table::fread(paste0(wqpd_path, "wqdp_raw.csv"))
+  last_download_date <- max(last_download_date <-data_last.df$sampledate)
+}
+#----------------------------------------end last date downloaded----------------------
 
 
 #-----------------clean data----------------------------
@@ -87,9 +107,9 @@ if(file.exists(file.path(project.dir, data_path, "data_modified.csv"))){
 #---------------generates a vector of huc8 ids
 #only creates it if the CEDR url is accessible
 #this prevents the app from breaking if CEDR is down or if no internet
-if(url.exists(CEDR_url) == TRUE){
+#if(url.exists(CEDR_url) == TRUE){
   HUC8.vec <- wq_selection_vector()
-}
+#}
 
 #------------------------------------------------------
 

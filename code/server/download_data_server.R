@@ -1,62 +1,41 @@
-observeEvent(input$download_data, {
-  # withProgress(message = "downloading water quality data", value = 0, {
-  #   #increment progress bar
-  #   incProgress(1/2)
-  #   #use cedr pull function
-  #   data.df <- CEDR_pull() %>%
-  #     #write data to directory
-  #     data.table::fwrite(file.path(project.dir, data_path, "cedr_wq_raw.csv"))
-  #   
-  #   #narrow date range of data based on users date range input
-  #   data_modified.df <- data.table::fread(paste0(data_path, "cedr_wq_raw.csv"),
-  #                                      data.table = FALSE) %>%
-  #     filter(sampledate >= input$plot_range[1],
-  #            sampledate <= input$plot_range[2]) %>%
-  #     
-  #     to_date_time(.) %>%
-  #     
-  #     data.table::fwrite(file.path(project.dir, data_path, "data_modified.csv")) #%>%
-  #     
-  #     #run datetime function on dataframe
-  #     #to_date_time(.)
-  #   
-  # 
-  # 
-  #   #increment progress bar
-  #   incProgress(1/2) 
-  # }) #end of withProgress
-  # 
+#---------------------------------CEDR download---------------------
+observeEvent(input$download_cedr_data, {
   
-  
-  
-  
-  
-  
-  withProgress(message = "downloading phyto data", value = 0, {
+  withProgress(message = "downloading CEDR data", value = 0, {
     #increment progress bar
     incProgress(1/2)
-    #use cedr pull function
+    #use cedr pull function to download data
     data.df <- CEDR_pull() %>%
       #write data to directory
-      data.table::fwrite(file.path(project.dir, data_path, "data_raw.csv"))
-    
-    #narrow date range of data based on users date range input
-    data_modified.df <- data.table::fread(paste0(data_path, "data_raw.csv"),
-                                       data.table = FALSE) %>%
-      filter(sampledate >= input$plot_range[1],
-             sampledate <= input$plot_range[2]) %>%
-      
-      to_date_time(.) %>%
-      
-      data.table::fwrite(file.path(project.dir, data_path, "data_modified.csv")) #%>%
-    
-    #run datetime function on dataframe
-    #to_date_time(.)
-    
-    
+      data.table::fwrite(file.path(project.dir, cedr_path, "cedr_raw.csv"))
     
     #increment progress bar
     incProgress(1/2) 
   }) #end of withProgress
   
-})#end of download_data observeEvent
+})
+#---------------------------------end CEDR download-----------------
+
+
+#---------------------------------NWIS download---------------------
+observeEvent(input$download_nwis_data, {
+  withProgress(message = "downloading NWIS data", value = 0, {
+    #increment progress bar
+    incProgress(1/2)
+    #use nwis pull function to download data
+    data.df <- NWIS_pull() %>%
+      #write data to directory
+      data.table::fwrite(file.path(project.dir, nwis_path, "nwis_raw.csv"))
+    
+    #increment progress bar
+    incProgress(1/2) 
+  }) #end of withProgress
+})
+#---------------------------------end NWIS download-----------------
+
+
+#---------------------------------WQDP download---------------------
+observeEvent(input$download_wqdp_data, {
+  
+})
+#---------------------------------end WQDP download-----------------

@@ -19,7 +19,7 @@ tabPanel("Error Report",
                   column(
                     width = 12,
                     #if data has been downloaded show errors else show message
-                    if(file.exists(file.path(project.dir, data_path, "data_modified.csv"))){
+                    if(file.exists(file.path(project.dir, active_path, "active_data.csv"))){
                     DT::dataTableOutput("problem_table")} else {
                       verbatimTextOutput("no_data_error_problems")
                     }#end of if file.exists
@@ -30,7 +30,7 @@ tabPanel("Error Report",
                   column(
                     width = 12,
                     #if data has been downloaded show errors else show message
-                    if(file.exists(file.path(project.dir, data_path, "data_modified.csv"))){
+                    if(file.exists(file.path(project.dir, active_path, "active_data.csv"))){
                     DT::dataTableOutput("qualifier_table")} else {
                       verbatimTextOutput("no_data_error_qualifiers")
                     }#end of if file.exists

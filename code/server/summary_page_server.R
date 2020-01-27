@@ -26,4 +26,18 @@
 #   
 # })
 
+#table for mean median mode - not currently in use
 output$m3_table <- DT::renderDataTable({summary_m3_table()}) 
+
+
+observeEvent(input$select_data, {
+active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
+                                    data.table = FALSE)
+})
+
+#for rendering heatmaps-
+# output$heatmap <- renderPlot(
+#   
+#   
+# )
+

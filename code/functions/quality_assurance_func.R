@@ -2,14 +2,14 @@
 check_data <-  function(){
   ####needs an if.exst exception
     #read downloaded water quality data
-    data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+    active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
                                        data.table = FALSE)
     
     #count number of NA entries in measurevalue
-    data_na_count <- as.numeric(sum(is.na(data_modified.df$measurevalue)))
+    data_na_count <- as.numeric(sum(is.na(active_data.df$measurevalue)))
     
     #count number of total entries
-    data_num <- nrow(data_modified.df)
+    data_num <- nrow(active_data.df)
     
     # calcualte number of na as percent of total entires
     data_na_percent <- (data_na_count / data_num)
@@ -24,14 +24,14 @@ check_data <-  function(){
 # S------------------------------------------count_problems---------------------------------------------
 count_and_report_problems <-  function(problem_name, problem_description){
   #read in data
-  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
                                         data.table = FALSE)
   
   #if the column problem is included in the data proceed, otherwise not
-  if("problem" %in% colnames(data_modified.df))
+  if("problem" %in% colnames(active_data.df))
   {
     #count problem type
-    problem_count <- as.numeric(sum(data_modified.df$problem == as.character(problem_name)))
+    problem_count <- as.numeric(sum(active_data.df$problem == as.character(problem_name)))
     
     #report problem type
     problem_report = paste("the number of ",problem_name," = ", problem_description, "is", problem_count)
@@ -49,11 +49,11 @@ count_and_report_problems <-  function(problem_name, problem_description){
 report_all_problems <-  function(){
   
   #read in data
-  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
                                         data.table = FALSE)
   
 #if the column problem is included in the data proceed, otherwise not
-  if("problem" %in% colnames(data_modified.df))
+  if("problem" %in% colnames(active_data.df))
   { 
 
     
@@ -99,14 +99,14 @@ report_all_problems <-  function(){
 # S------------------------------------------count_qualfier---------------------------------------------
 count_and_report_qualifiers <-  function(qualifier_name, qualifier_description){
   #read in data
-  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
                                         data.table = FALSE)
   
   #if the column qualfier is included in the data proceed, otherwise not
-  if("qualifier" %in% colnames(data_modified.df))
+  if("qualifier" %in% colnames(active_data.df))
   {
     #count qualifier type
-    qualifier_count <- as.numeric(sum(data_modified.df$qualifier == as.character(qualifier_name)))
+    qualifier_count <- as.numeric(sum(active_data.df$qualifier == as.character(qualifier_name)))
     
     #report qualifier type
     qualifier_report = paste("the number of ",qualifier_name," = ", qualifier_description, "is", qualifier_count)
@@ -122,11 +122,11 @@ count_and_report_qualifiers <-  function(qualifier_name, qualifier_description){
 report_all_qualifiers <-  function(){
   
   #read in data
-  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
                                         data.table = FALSE)
   
   #if the column qualifier is included in the data proceed, otherwise not
-  if("qualifier" %in% colnames(data_modified.df))
+  if("qualifier" %in% colnames(active_data.df))
   { 
     
     
@@ -150,7 +150,7 @@ report_all_qualifiers <-  function(){
 
 #------------------------problem error report as table ----------------------------
 report_problems_table <- function(){
-    data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+    active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
                                                                                       data.table = FALSE) %>%
       
       mutate(error_code = problem) %>%
@@ -194,7 +194,7 @@ report_problems_table <- function(){
 
 #------------------------qualifier error report as table ----------------------------
 report_qualifiers_table <- function(){
-  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
                                         data.table = FALSE) %>%
     
     mutate(error_code = qualifier) %>%
@@ -218,16 +218,16 @@ report_qualifiers_table <- function(){
 #------------------------end qualifier error report as table------------------------
 
 
-#------------------------error message if no data_modified.csv is present
+#------------------------error message if no active_data.csv is present
 no_data_error <- function(){
 
-message <- "no data has been downloaded.  download data to display errors for that data."
+message <- "no data has been downloaded or no data has been selected.  download data and/or select data to display errors for that data."
   
   
 
 return(message)
 }
-#------------------------end error message if no data_modified.csv is present
+#------------------------end error message if no active_data.csv is present
 
 
 
@@ -240,20 +240,20 @@ return(message)
 #testing func
 #checking problem column entries
 check_problems <- function(){
-  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
                                         data.table = FALSE)
   
   #if the column problem is included in the data proceed, otherwise not
-  if("problem" %in% colnames(data_modified.df))
+  if("problem" %in% colnames(active_data.df))
   {
 
-  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
                                         data.table = FALSE)
 
-  data_problems.df <- data_modified.df %>%
+  data_problems.df <- active_data.df %>%
     filter(!is.na(problem )) %>%
   
-  data.table::fwrite(file.path(project.dir, data_path, "qa_test.csv"))
+  data.table::fwrite(file.path(project.dir, active_path, "qa_test.csv"))
 
   
   qq_count <- as.numeric(sum(data_problems.df$problem == "qq"))

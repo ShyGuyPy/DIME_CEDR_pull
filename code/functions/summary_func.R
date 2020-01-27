@@ -1,16 +1,16 @@
 summary_m3_table <- function(){
-  data_modified.df <- data.table::fread(paste0(data_path, "data_modified.csv"),
+  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
                                         data.table = FALSE) #%>%
   
-  param_list.df <- data_modified.df %>%
+  param_list.df <- active_data.df %>%
     select(parameter) %>%
     distinct()
     
-  # data_modified.df <-  data_modified.df %>%
+  # active_data.df <-  active_data.df %>%
   #   spread(parameter, measurevalue) 
   
-  test.df <- data_modified.df %>%
-  chla_mean =  mean(data_modified.df$chla)
+  test.df <- active_data.df %>%
+  chla_mean =  mean(active_data.df$chla)
   
   
   return(test.df)

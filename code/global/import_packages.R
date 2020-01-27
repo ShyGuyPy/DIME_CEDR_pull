@@ -21,4 +21,6 @@ library(RCurl)
 library(curl)
 library(DT)
 library(shinyjs)
+library(EGRET)
+library(dataRetrieval)
 
