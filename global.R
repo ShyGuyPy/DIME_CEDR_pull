@@ -49,7 +49,7 @@ last_CEDR_download_date <- "no data downloaded"
 
 if(file.exists(file.path(project.dir, cedr_path, "cedr_raw.csv"))){
   data_last.df <- data.table::fread(paste0(cedr_path, "cedr_raw.csv"))
-  last_download_date <- max(last_download_date <-data_last.df$sampledate)
+  last_CEDR_download_date <- max(data_last.df$sampledate)
 }
 
 #last date NWIS data was downloaded
@@ -57,15 +57,16 @@ last_NWIS_download_date <- "no data downloaded"
 
 if(file.exists(file.path(project.dir, nwis_path, "nwis_raw.csv"))){
   data_last.df <- data.table::fread(paste0(nwis_path, "nwis_raw.csv"))
-  last_download_date <- max(last_download_date <-data_last.df$sampledate)
+  last_NWIS_download_date <- max(data_last.df$Date)
+  #change back to sampledate when you mutate it later
 }
 
 #last date WQDP data was downloaded
 last_WQDP_download_date <- "no data downloaded"
 
 if(file.exists(file.path(project.dir, wqdp_path, "wqdp_raw.csv"))){
-  data_last.df <- data.table::fread(paste0(wqpd_path, "wqdp_raw.csv"))
-  last_download_date <- max(last_download_date <-data_last.df$sampledate)
+  # data_last.df <- data.table::fread(paste0(wqpd_path, "wqdp_raw.csv"))
+  # last_WQDP_download_date <- max(data_last.df$sampledate)
 }
 #----------------------------------------end last date downloaded----------------------
 

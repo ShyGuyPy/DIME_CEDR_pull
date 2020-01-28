@@ -25,7 +25,7 @@ tabPanel("Download Data",
          
          #S----------------------NWIS action buttons--------------------
          actionButton("download_wqdp_data",
-                      "Download All Water Quality Portal Data",
+                      "Download All WQDP Data",
                       icon = NULL,
                       width = "500px"
          )
