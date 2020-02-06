@@ -32,7 +32,8 @@ need <- c("shiny",
           "DT",
           "shinyjs",
           "EGRET",
-          "dataRetrieval"
+          "dataRetrieval",
+          "leaflet.minicharts"
           ) 
 # find out which packages are installed
 ins <- installed.packages()[, 1] 

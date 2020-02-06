@@ -49,7 +49,12 @@ last_CEDR_download_date <- "no data downloaded"
 
 if(file.exists(file.path(project.dir, cedr_path, "cedr_raw.csv"))){
   data_last.df <- data.table::fread(paste0(cedr_path, "cedr_raw.csv"))
+  #finds last download date
   last_CEDR_download_date <- max(data_last.df$sampledate)
+  
+  #jitter for maps 
+  data_last.df$latitude <- jitter( data_last.df$latitude, factor = 7)
+  data_last.df$longitude <- jitter( data_last.df$longitude, factor = 7)
 }
 
 #last date NWIS data was downloaded
@@ -57,8 +62,13 @@ last_NWIS_download_date <- "no data downloaded"
 
 if(file.exists(file.path(project.dir, nwis_path, "nwis_raw.csv"))){
   data_last.df <- data.table::fread(paste0(nwis_path, "nwis_raw.csv"))
+  #finds last download date
   last_NWIS_download_date <- max(data_last.df$Date)
   #change back to sampledate when you mutate it later
+  
+  #jitter for maps 
+  # data_last.df$latitude <- jitter( data_last.df$latitude, factor = 7)
+  # data_last.df$longitude <- jitter( data_last.df$longitude, factor = 7)
 }
 
 #last date WQDP data was downloaded
@@ -66,7 +76,12 @@ last_WQDP_download_date <- "no data downloaded"
 
 if(file.exists(file.path(project.dir, wqdp_path, "wqdp_raw.csv"))){
   # data_last.df <- data.table::fread(paste0(wqpd_path, "wqdp_raw.csv"))
+  #finds last download date
   # last_WQDP_download_date <- max(data_last.df$sampledate)
+  
+  #jitter for maps 
+  data_last.df$latitude <- jitter( data_last.df$latitude, factor = 7)
+  data_last.df$longitude <- jitter( data_last.df$longitude, factor = 7)
 }
 #----------------------------------------end last date downloaded----------------------
 
@@ -113,6 +128,17 @@ if(file.exists(file.path(project.dir, wqdp_path, "wqdp_raw.csv"))){
 #}
 
 #------------------------------------------------------
+
+#---------------variables for Rikke's maps-----------------------------------------------------
+
+
+
+
+PRB <- readOGR(file.path(project.dir,map_path,"PotomacBasin_Boundary_NHD2003.shp"))
+HUC8 <- readOGR(file.path(project.dir,map_path,"WBDHU8_PotmacBasin_Feb20162.shp"))
+ches <- readOGR(file.path(project.dir,map_path,"ChesBay.shp"))
+gage <- readOGR(file.path(project.dir,map_path,"gages_clipped.shp"))
+#----------------------------------------------------------------------------------------------
 
 
 #--------------------------testing--------------------

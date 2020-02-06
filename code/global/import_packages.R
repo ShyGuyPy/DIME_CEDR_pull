@@ -23,4 +23,4 @@ library(DT)
 library(shinyjs)
 library(EGRET)
 library(dataRetrieval)
-
+library(leaflet.minicharts)
