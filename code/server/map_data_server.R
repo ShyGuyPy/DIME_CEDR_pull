@@ -17,7 +17,7 @@ output$map <- renderLeaflet({
 
 observeEvent(input$select_data, {
   
-  #seelects file path based on selection
+  #selects file path based on selection
   if(input$active_data == "cedr"){
     current_path = cedr_path
   } else if(input$active_data == "nwis"){
@@ -44,27 +44,29 @@ observeEvent(input$select_data, {
                      lng = ~longitude,
                      lat = ~latitude,
                      radius = 6,
-                     fillColor = ~ pal(active_data.df$measurevalue),
+                     fillColor = ~ "Blues",#pal(active_data.df$measurevalue),
                      stroke = TRUE,
                      weight = 1,
                      color = "black",
                      fillOpacity = 1,
-                     label = paste(active_data.df$year),
-                     popup=paste('<strong>Date:</strong>', active_data.df$date, "<br>",
+                     label = paste(as.Date(active_data.df$sampledate)),
+                     popup=paste('<strong>Date:</strong>', active_data.df$sampledate, "<br>",
                                  '<strong>Value:</strong>', active_data.df$measurevalue, "<br>",
                                  '<strong>Unit:</strong>', active_data.df$unit, "<br>",
                                  '<strong>Station:</strong>', active_data.df$station, "<br",
                                  '<strong>Latitude:</strong>', formatC(active_data.df$latitude, digits = 4, format = "f"), "<br",
                                  '<strong>Longitude:</strong>', formatC(active_data.df$longitude, digits = 4, format = "f")),
-                     options = popupOptions(maxHeight = 50))
+                     options = popupOptions(maxHeight = 50)
+                     )
 })
+
 
 #need to integrate
 # observe({
 #   pal <- colorNumeric(palette = c("yellow","purple"), domain = select_data()$measurevalue)
-#   
+# 
 #   proxy <- leafletProxy("map", data = parameter_data) %>%
-#     clearControls() %>%
+#     clearControls() #%>%
 #     addLegend("bottomleft", pal = pal, values =select_data()$measurevalue, title = as.character(input$data), opacity = 1)
 # })
 
