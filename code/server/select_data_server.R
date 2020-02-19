@@ -6,7 +6,7 @@ observeEvent(input$select_data, {
   } else if(input$active_data == "nwis"){
     current_path = nwis_path
   } else if(input$active_data == "wqdp"){
-    current_path = wqpd_path
+    current_path = wqdp_path
 }
   
   #path/filename for placing selected data into active data
@@ -15,14 +15,40 @@ observeEvent(input$select_data, {
   session$sendCustomMessage(type = 'testmessage',
                             message = as.character(paste0('Thank you for clicking', input$active_data)))
   
-  #if selected data exists
+
+  
+  #if selected data exists(if data has already been downloaded from main source)
   if(file.exists(our_data)){
+    
+    # #remove time extension from sampledate object
+    # active_data.df <- to_date(active_data.df)
+    
     #read selected data
     active_data.df <- data.table::fread(our_data,
                                         data.table = FALSE) %>%
+      
+    #filter by date range selection
+    filter(as.Date(sampledate) >= as.Date(input$date_range[1]), as.Date(sampledate) <= as.Date(input$date_range[2])) %>%
+      
+    #filter by metric selection
+    filter(parameter %in% input$select_metric) %>%
+      
+      
     #and write to active data
     data.table::fwrite(file.path(project.dir, active_path, "active_data.csv"))
+    
+    #output message if data exists
+    selection_state = "data was downloaded succcessfully."
+    output$selection_report <- renderPrint({ selection_state })
+  }else{
+    #output message if data not yet downloaded
+    selection_state = "no data has been downloaded. download some data."
+    output$selection_report <- renderPrint({ selection_state })
   }
 
 })
+
+
+
+
                               

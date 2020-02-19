@@ -36,7 +36,8 @@ project.dir <- rprojroot::find_rstudio_root_file()
 # needs to be a user input, can't stay hard coded here
 
 #this is the minimum date to be included
-min_date = "01-01-1970"#2018"
+min_date = #"01-01-1970"
+"01-01-2018"
 
 #this is the maximum date to be included, add the variable todays.date into this variable if you want the most recent data
 max_date = todays.date#

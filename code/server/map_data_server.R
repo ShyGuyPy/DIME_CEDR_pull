@@ -23,7 +23,7 @@ observeEvent(input$select_data, {
   } else if(input$active_data == "nwis"){
     current_path = nwis_path
   } else if(input$active_data == "wqdp"){
-    current_path = wqpd_path
+    current_path = wqdp_path
   }
   
   #path/filename for placing selected data into active data
@@ -35,8 +35,8 @@ observeEvent(input$select_data, {
                                         data.table = FALSE)
   }
   
-  paramter_data <- active_data.df
-  
+  #only runs if active_data has been assigned and written to dirctory
+  if(file.exists(paste0(project.dir,"data/ACTIVE/", "active_data.csv"))){
   
   proxy <- leafletProxy("map", data = active_data.df$measurevalue) %>%
     clearMarkers() %>%
@@ -49,7 +49,7 @@ observeEvent(input$select_data, {
                      weight = 1,
                      color = "black",
                      fillOpacity = 1,
-                     label = paste(as.Date(active_data.df$sampledate)),
+                     #label = paste(as.Date(active_data.df$sampledate)),
                      popup=paste('<strong>Date:</strong>', active_data.df$sampledate, "<br>",
                                  '<strong>Value:</strong>', active_data.df$measurevalue, "<br>",
                                  '<strong>Unit:</strong>', active_data.df$unit, "<br>",
@@ -58,6 +58,7 @@ observeEvent(input$select_data, {
                                  '<strong>Longitude:</strong>', formatC(active_data.df$longitude, digits = 4, format = "f")),
                      options = popupOptions(maxHeight = 50)
                      )
+  }#end of if exist active_data
 })
 
 

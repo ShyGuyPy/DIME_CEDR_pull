@@ -5,9 +5,9 @@ tags$div(
   h2("Download Data"),
   p("Data can be pulled annually."),
   tags$ol(
-    tags$li(paste0("Data was last downloaded from CEDR(http://datahub.chesapeakebay.net) on : ", last_CEDR_download_date)), 
-    tags$li(paste0("Data was last downloaded from NWIS on: ", last_NWIS_download_date)), 
-    tags$li(paste0("Data was last downloaded from WQDP on: ", last_WQDP_download_date))
+    tags$li(paste0("The most recent date for data from CEDR(http://datahub.chesapeakebay.net) was : ", last_CEDR_download_date)), 
+    tags$li(paste0("The most recent date for data from NWIS was: ", last_NWIS_download_date)), 
+    tags$li(paste0("The most recent date for data from WQDP was: ", last_WQDP_download_date))
   ),
 
   
