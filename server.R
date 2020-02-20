@@ -7,7 +7,7 @@ shinyServer(function(input, output, session) {
   source("code/server/error_report_server.R", local = TRUE)
   source("code/server/summary_page_server.R", local = TRUE)
   source("code/server/plot_data_server.R", local = TRUE)
-  source("code/server/map_data_server.R", local = TRUE)
+  source("code/server/map_data_server_test.R", local = TRUE)
 
     
   

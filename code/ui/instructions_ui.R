@@ -1,6 +1,6 @@
 tags$div(
   h1("Instructions"),
-  p("This tool is meant to provide a qucik look at data"),
+  p("This tool is meant to provide a quick look at data"),
   br(),
   h2("Download Data"),
   p("Data can be pulled annually."),
