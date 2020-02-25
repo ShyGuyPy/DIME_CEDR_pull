@@ -46,7 +46,8 @@ tabPanel("Select Data",
          ),#,
          #E----------------------end of select data action buttons-------------
 
-         verbatimTextOutput("selection_report")
+         verbatimTextOutput("selection_report"),
+         verbatimTextOutput("test_report")
          
          
          

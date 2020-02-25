@@ -1,6 +1,10 @@
 observeEvent(input$select_data, {
+  #progress indicator
+  withProgress(message = "setting selected data to active data", value = 0, {
+    #increment progress bar
+    incProgress(1/2)
   
-  #seelects file path based on selection
+  #selects file path based on selection
   if(input$active_data == "cedr"){
     current_path = cedr_path
   } else if(input$active_data == "nwis"){
@@ -40,13 +44,20 @@ observeEvent(input$select_data, {
     #output message if data exists
     selection_state = "data was downloaded succcessfully."
     output$selection_report <- renderPrint({ selection_state })
+    
+    test_statement = active_data.df$sampledate[2]
+    output$test_report <- renderPrint({ test_statement })
+    
   }else{
     #output message if data not yet downloaded
     selection_state = "no data has been downloaded. download some data."
     output$selection_report <- renderPrint({ selection_state })
   }
 
-})
+  #increment progress bar
+  incProgress(1/2) 
+  }) #end of withProgress
+}) #end observe select_data
 
 
 

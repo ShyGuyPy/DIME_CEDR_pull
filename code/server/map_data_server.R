@@ -16,7 +16,7 @@ output$map <- renderLeaflet({
 })
 
 observeEvent(input$select_data, {
-  
+
   #selects file path based on selection
   if(input$active_data == "cedr"){
     current_path = cedr_path
@@ -25,31 +25,32 @@ observeEvent(input$select_data, {
   } else if(input$active_data == "wqdp"){
     current_path = wqdp_path
   }
-  
+
   #path/filename for placing selected data into active data
   our_data <- paste0(current_path, input$active_data, "_raw", ".csv")
-  
+
   if(file.exists(our_data)){
     #read selected data
     active_data.df <- data.table::fread(our_data,
                                         data.table = FALSE)
   }
-  
+
   #only runs if active_data has been assigned and written to dirctory
   if(file.exists(paste0(project.dir,"data/ACTIVE/", "active_data.csv"))){
-  
+
   proxy <- leafletProxy("map", data = active_data.df$measurevalue) %>%
     clearMarkers() %>%
     addCircleMarkers(data = active_data.df,
                      lng = ~longitude,
                      lat = ~latitude,
                      radius = 6,
-                     fillColor = ~ "Blues",#pal(active_data.df$measurevalue),
+                     fillColor = ~ #"Blues",
+                       pal(active_data.df$measurevalue),
                      stroke = TRUE,
                      weight = 1,
                      color = "black",
                      fillOpacity = 1,
-                     #label = paste(as.Date(active_data.df$sampledate)),
+                     label = paste(as.Date(active_data.df$sampledate)),
                      popup=paste('<strong>Date:</strong>', active_data.df$sampledate, "<br>",
                                  '<strong>Value:</strong>', active_data.df$measurevalue, "<br>",
                                  '<strong>Unit:</strong>', active_data.df$unit, "<br>",
@@ -58,6 +59,12 @@ observeEvent(input$select_data, {
                                  '<strong>Longitude:</strong>', formatC(active_data.df$longitude, digits = 4, format = "f")),
                      options = popupOptions(maxHeight = 50)
                      )
+
+    pal <- colorNumeric(palette = c("yellow","purple"), domain = active_data.df$measurevalue)#select_data()$measurevalue)
+
+    proxy <- leafletProxy("map", data = parameter_data) %>%
+      clearControls() %>%
+      addLegend("bottomleft", pal = pal, values =select_data()$measurevalue, title = as.character(input$data), opacity = 1)
   }#end of if exist active_data
 })
 
@@ -65,9 +72,9 @@ observeEvent(input$select_data, {
 #need to integrate
 # observe({
 #   pal <- colorNumeric(palette = c("yellow","purple"), domain = select_data()$measurevalue)
-# 
+#
 #   proxy <- leafletProxy("map", data = parameter_data) %>%
-#     clearControls() #%>%
+#     clearControls() %>%
 #     addLegend("bottomleft", pal = pal, values =select_data()$measurevalue, title = as.character(input$data), opacity = 1)
 # })
 
@@ -86,6 +93,13 @@ observeEvent(input$map_zoom_in ,{
             lng  = (input$map_bounds$east + input$map_bounds$west) / 2,
             zoom = input$map_zoom + 1)
 })
+
+
+
+
+
+
+
 
 
 

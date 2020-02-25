@@ -148,11 +148,15 @@ test_condition <- TRUE
 
 #setting up for a possible restructuring to a reactive value
 if(file.exists(paste0(active_path, "active_data.csv"))){
-temp_active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
-                                    data.table = FALSE)
-}else{temp_active_data.df <- data.frame(sampledate=as.Date(character()),
+reactive(active_data.df <- data.table::fread(paste0(active_path, "active_data.csv",
+                                    data.table = FALSE)))
+}else{reactive(active_data.df <- data.frame(sampledate=as.Date(character("1")),
 
-                                           stringsAsFactors=FALSE)}
+                                           stringsAsFactors=FALSE))
+}
+
+
+  
 
 
 
