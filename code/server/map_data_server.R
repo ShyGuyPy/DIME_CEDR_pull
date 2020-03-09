@@ -28,11 +28,12 @@ observeEvent(input$select_data, {
 
   #path/filename for placing selected data into active data
   our_data <- paste0(current_path, input$active_data, "_raw", ".csv")
-
+  
+  #tests if the raw data has been downloaded
   if(file.exists(our_data)){
     #read selected data
-    active_data.df <- data.table::fread(our_data,
-                                        data.table = FALSE)
+    active_data.df <- active_data.df() #active_data.df <- data.table::fread(our_data,
+                                       # data.table = FALSE)
   }
 
   #only runs if active_data has been assigned and written to dirctory
@@ -44,7 +45,7 @@ observeEvent(input$select_data, {
                      lng = ~longitude,
                      lat = ~latitude,
                      radius = 6,
-                     fillColor = ~ #"Blues",
+                     fillColor = ~ "Blues",
                        pal(active_data.df$measurevalue),
                      stroke = TRUE,
                      weight = 1,

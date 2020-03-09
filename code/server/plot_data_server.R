@@ -1,9 +1,9 @@
 observeEvent(input$data_into_plot, {
   
   #read file
-  plot_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
-                                      header = TRUE,
-                                      data.table = FALSE) %>%
+  plot_data.df <- active_data.df() %>%#data.table::fread(paste0(active_path, "active_data.csv"),
+                                      #header = TRUE,
+                                      #data.table = FALSE) %>%
   filter(parameter == "spcond")
   
   

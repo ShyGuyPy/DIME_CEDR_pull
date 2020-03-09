@@ -2,8 +2,8 @@
 check_data <-  function(){
   ####needs an if.exst exception
     #read downloaded water quality data
-    active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
-                                       data.table = FALSE)
+  active_data.df <- active_data.df() %>% #data.table::fread(paste0(active_path, "active_data.csv"),
+                                       #data.table = FALSE)
     
     #count number of NA entries in measurevalue
     data_na_count <- as.numeric(sum(is.na(active_data.df$measurevalue)))
@@ -24,8 +24,8 @@ check_data <-  function(){
 # S------------------------------------------count_problems---------------------------------------------
 count_and_report_problems <-  function(problem_name, problem_description){
   #read in data
-  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
-                                        data.table = FALSE)
+  active_data.df <- active_data.df() %>% #data.table::fread(paste0(active_path, "active_data.csv"),
+                                        #data.table = FALSE)
   
   #if the column problem is included in the data proceed, otherwise not
   if("problem" %in% colnames(active_data.df))
@@ -49,8 +49,8 @@ count_and_report_problems <-  function(problem_name, problem_description){
 report_all_problems <-  function(){
   
   #read in data
-  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
-                                        data.table = FALSE)
+  active_data.df <- active_data.df() %>% #data.table::fread(paste0(active_path, "active_data.csv"),
+                                        #data.table = FALSE)
   
 #if the column problem is included in the data proceed, otherwise not
   if("problem" %in% colnames(active_data.df))
@@ -99,8 +99,8 @@ report_all_problems <-  function(){
 # S------------------------------------------count_qualfier---------------------------------------------
 count_and_report_qualifiers <-  function(qualifier_name, qualifier_description){
   #read in data
-  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
-                                        data.table = FALSE)
+  active_data.df <- active_data.df() %>%#data.table::fread(paste0(active_path, "active_data.csv"),
+                                        #data.table = FALSE)
   
   #if the column qualfier is included in the data proceed, otherwise not
   if("qualifier" %in% colnames(active_data.df))
@@ -122,8 +122,8 @@ count_and_report_qualifiers <-  function(qualifier_name, qualifier_description){
 report_all_qualifiers <-  function(){
   
   #read in data
-  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
-                                        data.table = FALSE)
+  active_data.df <- active_data.df() %>% #data.table::fread(paste0(active_path, "active_data.csv"),
+                                        #data.table = FALSE)
   
   #if the column qualifier is included in the data proceed, otherwise not
   if("qualifier" %in% colnames(active_data.df))
@@ -150,8 +150,8 @@ report_all_qualifiers <-  function(){
 
 #------------------------problem error report as table ----------------------------
 report_problems_table <- function(){
-    active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
-                                                                                      data.table = FALSE) %>%
+  active_data.df <- active_data.df() %>% #data.table::fread(paste0(active_path, "active_data.csv"),
+                                                                                      #data.table = FALSE) %>%
       
       mutate(error_code = problem) %>%
       mutate(definition = case_when(problem == "a"~A,
@@ -194,8 +194,8 @@ report_problems_table <- function(){
 
 #------------------------qualifier error report as table ----------------------------
 report_qualifiers_table <- function(){
-  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
-                                        data.table = FALSE) %>%
+  active_data.df <- active_data.df() %>% #data.table::fread(paste0(active_path, "active_data.csv"),
+                                        #data.table = FALSE) %>%
     
     mutate(error_code = qualifier) %>%
     mutate(definition = case_when(qualifier == "<"~Less_Than,
@@ -240,15 +240,15 @@ return(message)
 #testing func
 #checking problem column entries
 check_problems <- function(){
-  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
-                                        data.table = FALSE)
+  active_data.df <- active_data.df() %>% #data.table::fread(paste0(active_path, "active_data.csv"),
+                                        #data.table = FALSE)
   
   #if the column problem is included in the data proceed, otherwise not
   if("problem" %in% colnames(active_data.df))
   {
 
-  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
-                                        data.table = FALSE)
+   # active_data.df <- active_data.df() #data.table::fread(paste0(active_path, "active_data.csv"),
+                                        #data.table = FALSE)
 
   data_problems.df <- active_data.df %>%
     filter(!is.na(problem )) %>%

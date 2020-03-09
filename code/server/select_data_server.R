@@ -29,6 +29,7 @@ observeEvent(input$select_data, {
     
     #read selected data
     active_data.df <- data.table::fread(our_data,
+                                        header = TRUE,
                                         data.table = FALSE) %>%
       
     #filter by date range selection

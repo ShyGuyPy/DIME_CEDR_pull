@@ -1,8 +1,5 @@
 parameter_average <- function(my_frame.df) {
-  ###eventually dataframe needs to be a function arguement
-  # #read downloaded water quality data
-  # active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
-  #                                    data.table = FALSE)
+
  
   
   data_map.df <- my_frame.df %>%
