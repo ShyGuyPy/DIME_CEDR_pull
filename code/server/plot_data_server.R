@@ -1,4 +1,7 @@
-observeEvent(input$data_into_plot, {
+source("server.R", local = TRUE)
+
+observeEvent(input$select_data, {
+               #data_into_plot, {
   
   #read file
   plot_data.df <- active_data.df() %>%#data.table::fread(paste0(active_path, "active_data.csv"),
@@ -8,7 +11,9 @@ observeEvent(input$data_into_plot, {
   
   
   output$plot_the_data <- renderPlot({ggplot(
-    plot_data.df, aes(x = sampledatetime, y = measurevalue )) + geom_line(
+    #active_data.df(),
+    plot_data.df, 
+    aes(x = sampledate, y = measurevalue )) + geom_line(
       #aes(linetype = layer, colour = layer)
       ) 
  

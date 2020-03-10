@@ -1,3 +1,4 @@
+source("server.R", local = TRUE)
 #error report
 
 # #on press of 'report errors' button lists problems
@@ -37,6 +38,6 @@ output$no_data_error_qualifiers <- no_data_error
 
 #if select data button is clicked update error report
 observeEvent(input$select_data, {
-  output$problem_table <- DT::renderDataTable({report_problems_table()}) 
-  output$qualifier_table <- DT::renderDataTable({report_qualifiers_table()}) 
+  output$problem_table <- DT::renderDataTable({report_problems_table(active_data.df())}) 
+  output$qualifier_table <- DT::renderDataTable({report_qualifiers_table(active_data.df())}) 
 })

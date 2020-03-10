@@ -1,3 +1,4 @@
+source("server.R", local = TRUE)
 
 output$map <- renderLeaflet({
   leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
@@ -32,42 +33,43 @@ observeEvent(input$select_data, {
   #tests if the raw data has been downloaded
   if(file.exists(our_data)){
     #read selected data
-    active_data.df <- active_data.df() #active_data.df <- data.table::fread(our_data,
+    #active_data.df <- active_data.df() #active_data.df <- data.table::fread(our_data,
                                        # data.table = FALSE)
   }
 
   #only runs if active_data has been assigned and written to dirctory
   if(file.exists(paste0(project.dir,"data/ACTIVE/", "active_data.csv"))){
 
-  proxy <- leafletProxy("map", data = active_data.df$measurevalue) %>%
+  proxy <- leafletProxy("map", data = active_data.df()$measurevalue) %>%
     clearMarkers() %>%
-    addCircleMarkers(data = active_data.df,
+    addCircleMarkers(data = active_data.df(),
                      lng = ~longitude,
                      lat = ~latitude,
                      radius = 6,
                      fillColor = ~ "Blues",
-                       pal(active_data.df$measurevalue),
+                       #pal(active_data.df()$measurevalue),
                      stroke = TRUE,
                      weight = 1,
                      color = "black",
                      fillOpacity = 1,
-                     label = paste(as.Date(active_data.df$sampledate)),
-                     popup=paste('<strong>Date:</strong>', active_data.df$sampledate, "<br>",
-                                 '<strong>Value:</strong>', active_data.df$measurevalue, "<br>",
-                                 '<strong>Unit:</strong>', active_data.df$unit, "<br>",
-                                 '<strong>Station:</strong>', active_data.df$station, "<br",
-                                 '<strong>Latitude:</strong>', formatC(active_data.df$latitude, digits = 4, format = "f"), "<br",
-                                 '<strong>Longitude:</strong>', formatC(active_data.df$longitude, digits = 4, format = "f")),
+                     label = paste(as.Date(active_data.df()$sampledate)),
+                     popup=paste('<strong>Date:</strong>', active_data.df()$sampledate, "<br>",
+                                 '<strong>Value:</strong>', active_data.df()$measurevalue, "<br>",
+                                 '<strong>Unit:</strong>', active_data.df()$unit, "<br>",
+                                 '<strong>Station:</strong>', active_data.df()$station, "<br",
+                                 '<strong>Latitude:</strong>', formatC(active_data.df()$latitude, digits = 4, format = "f"), "<br",
+                                 '<strong>Longitude:</strong>', formatC(active_data.df()$longitude, digits = 4, format = "f")),
                      options = popupOptions(maxHeight = 50)
                      )
 
-    pal <- colorNumeric(palette = c("yellow","purple"), domain = active_data.df$measurevalue)#select_data()$measurevalue)
+    pal <- colorNumeric(palette = c("yellow","purple"), domain = active_data.df()$measurevalue)#select_data()$measurevalue)
 
-    proxy <- leafletProxy("map", data = parameter_data) %>%
-      clearControls() %>%
-      addLegend("bottomleft", pal = pal, values =select_data()$measurevalue, title = as.character(input$data), opacity = 1)
-  }#end of if exist active_data
-})
+    # proxy <- leafletProxy("map", data = parameter_data) %>%
+    #   clearControls() %>%
+    #   addLegend("bottomleft", pal = pal, values =select_data()$measurevalue, title = as.character(input$data), opacity = 1)
+    # 
+    }#end of if exist active_data
+})#?
 
 
 #need to integrate
