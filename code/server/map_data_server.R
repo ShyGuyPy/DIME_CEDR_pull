@@ -12,8 +12,8 @@ output$map <- renderLeaflet({
                            '<strong>ID:</strong>', gage$STATION_NO)) %>%
     addLayersControl(overlayGroups = c("Potomac River Watershed", "Chesapeake Bay Watershed", "HUC8", "USGS Stream Gage"), position = "bottomleft",
                      options = layersControlOptions(collapsed = FALSE)) %>%
-    hideGroup("Chesapeake Bay Watershed") %>%
-    hideGroup("USGS Stream Gage")
+    hideGroup("Chesapeake Bay Watershed") #%>%
+    #hideGroup("USGS Stream Gage")
 })
 
 observeEvent(input$select_data, {
@@ -38,15 +38,18 @@ observeEvent(input$select_data, {
   }
 
   #only runs if active_data has been assigned and written to dirctory
-  if(file.exists(paste0(project.dir,"data/ACTIVE/", "active_data.csv"))){
-
+  if(file.exists("data/ACTIVE/active_data.csv")){#paste0(project.dir,"data/ACTIVE/", "active_data.csv"))){
+  pal <- colorNumeric(palette = c("yellow","purple"), domain = active_data.df()$measurevalue)
+    
+    
   proxy <- leafletProxy("map", data = active_data.df()$measurevalue) %>%
     clearMarkers() %>%
     addCircleMarkers(data = active_data.df(),
                      lng = ~longitude,
                      lat = ~latitude,
                      radius = 6,
-                     fillColor = ~ "Blues",
+                     #fillColor = ~ "Blues",
+                     fillColor = ~ pal(active_data.df()$measurevalue),
                        #pal(active_data.df()$measurevalue),
                      stroke = TRUE,
                      weight = 1,
@@ -62,14 +65,14 @@ observeEvent(input$select_data, {
                      options = popupOptions(maxHeight = 50)
                      )
 
-    pal <- colorNumeric(palette = c("yellow","purple"), domain = active_data.df()$measurevalue)#select_data()$measurevalue)
+    #pal <- colorNumeric(palette = c("yellow","purple"), domain = active_data.df()$measurevalue)#select_data()$measurevalue)
 
     # proxy <- leafletProxy("map", data = parameter_data) %>%
     #   clearControls() %>%
     #   addLegend("bottomleft", pal = pal, values =select_data()$measurevalue, title = as.character(input$data), opacity = 1)
     # 
     }#end of if exist active_data
-})#?
+})#end of observe event
 
 
 #need to integrate

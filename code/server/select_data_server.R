@@ -16,9 +16,9 @@ observeEvent(input$select_data, {
   #path/filename for placing selected data into active data
   our_data <- paste0(current_path, input$active_data, "_raw", ".csv")
   
-  session$sendCustomMessage(type = 'testmessage',
-                            message = as.character(paste0('Thank you for clicking', input$active_data)))
-  
+  # session$sendCustomMessage(type = 'testmessage',
+  #                           message = as.character(paste0('Thank you for clicking', input$active_data)))
+  # 
 
   
   #if selected data exists(if data has already been downloaded from main source)
