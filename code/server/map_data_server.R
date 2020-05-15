@@ -16,7 +16,17 @@ output$map <- renderLeaflet({
     #hideGroup("USGS Stream Gage")
 })
 
-observeEvent(input$select_data, {
+#https://stackoverflow.com/questions/41960953/how-to-listen-for-more-than-one-event-expression-within-a-shiny-observeevent
+#creates a reactive that responds to both inputs(data selection and map tab click)
+toListen <- reactive({
+  list(input$select_data,input$map_data_tab)
+})
+
+
+#update map after data is selected and map tab is selected
+observeEvent(toListen()
+  #input$select_data
+  , {
 
   #selects file path based on selection
   if(input$active_data == "cedr"){
@@ -29,6 +39,7 @@ observeEvent(input$select_data, {
 
   #path/filename for placing selected data into active data
   our_data <- paste0(current_path, input$active_data, "_raw", ".csv")
+
   
   #tests if the raw data has been downloaded
   if(file.exists(our_data)){
