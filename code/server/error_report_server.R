@@ -27,17 +27,22 @@ source("server.R", local = TRUE)
 # })
 
 #on launch generates a table of problems
-output$problem_table <- DT::renderDataTable({report_problems_table()}) 
+output$problem_table <- DT::renderDataTable({report_problems_table()})
 
 #on launch generates a table of qualifiers
-output$qualifier_table <- DT::renderDataTable({report_qualifiers_table()}) 
+output$qualifier_table <- DT::renderDataTable({report_qualifiers_table()})
 
 output$no_data_error_problems <- no_data_error
 
 output$no_data_error_qualifiers <- no_data_error
 
+toListenReport <- reactive({
+  list(input$select_data,input$error_report_tab)
+})
+
 #if select data button is clicked update error report
-observeEvent(input$select_data, {
+observeEvent(toListenReport()#input$select_data
+             , {
   output$problem_table <- DT::renderDataTable({report_problems_table(active_data.df())}) 
   output$qualifier_table <- DT::renderDataTable({report_qualifiers_table(active_data.df())}) 
 })

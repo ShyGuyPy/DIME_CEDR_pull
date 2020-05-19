@@ -18,13 +18,13 @@ output$map <- renderLeaflet({
 
 #https://stackoverflow.com/questions/41960953/how-to-listen-for-more-than-one-event-expression-within-a-shiny-observeevent
 #creates a reactive that responds to both inputs(data selection and map tab click)
-toListen <- reactive({
+toListenMap <- reactive({
   list(input$select_data,input$map_data_tab)
 })
 
 
 #update map after data is selected and map tab is selected
-observeEvent(toListen()
+observeEvent(toListenMap()
   #input$select_data
   , {
 
