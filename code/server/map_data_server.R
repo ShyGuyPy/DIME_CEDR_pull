@@ -22,9 +22,15 @@ toListenMap <- reactive({
   list(input$select_data,input$map_data_tab)
 })
 
+toListenMap2 <- reactive({
+  list(input$map_data_tab)
+  #file.exists("data/ACTIVE/active_data.csv"),
+})
+
 
 #update map after data is selected and map tab is selected
-observeEvent(toListenMap()
+observeEvent(input$selected_tab#
+  #input$map_data_tab#toListenMap()
   #input$select_data
   , {
 
@@ -94,6 +100,8 @@ observeEvent(toListenMap()
 #     clearControls() %>%
 #     addLegend("bottomleft", pal = pal, values =select_data()$measurevalue, title = as.character(input$data), opacity = 1)
 # })
+
+
 
 
 # Zoom control - zoom out

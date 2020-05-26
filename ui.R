@@ -13,7 +13,7 @@ ui <- fluidPage(useShinyjs(),
                               
                               #S-------------------sidebar---------------------------
                               dashboardSidebar(width = 200,
-                                               sidebarMenu(id ="main1",
+                                               sidebarMenu(id ="selected_tab",
                                                  menuItem("Instructions", tabName = "instructions_tab"),
                                                  menuItem("Download Data", tabName = "download_data_tab"),
                                                  menuItem("Select Data", tabName = "select_data_tab"),
