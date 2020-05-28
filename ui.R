@@ -58,7 +58,7 @@ ui <- fluidPage(useShinyjs(),
                                 
                               )#end of tabItems
                                 
-                                ),#end of dashboardbody
+                                )#end of dashboardbody
                               #E----------------end of dashboard body-----------------------
                               
                 )#end of dashboard page
