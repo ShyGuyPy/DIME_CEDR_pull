@@ -46,10 +46,31 @@ observeEvent(#toListenReport()#
              , {
   output$problem_table <- DT::renderDataTable({report_problems_table(active_data.df())}) 
   output$qualifier_table <- DT::renderDataTable({report_qualifiers_table(active_data.df())}) 
+  
+  #debugging output
+  problems_test <- report_problems_table(active_data.df())%>%
+    data.table::fwrite(file.path(project.dir, cedr_path, "problems.csv"))
+  
+  #debugging output
+  qualifier_test <- report_qualifiers_table(active_data.df())%>%
+    data.table::fwrite(file.path(project.dir, cedr_path, "qualifiers.csv"))
 })
 
 observeEvent(input$selected_tab#input$select_data
              , {
-               output$problem_table <- DT::renderDataTable({report_problems_table(active_data.df())})
-               output$qualifier_table <- DT::renderDataTable({report_qualifiers_table(active_data.df())})
+               
+               active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
+                                                   header = TRUE,
+                                                   data.table = FALSE)
+               
+               output$problem_table <- DT::renderDataTable({report_problems_table(active_data.df)})#active_data.df())})
+               output$qualifier_table <- DT::renderDataTable({report_qualifiers_table(active_data.df)})#active_data.df())})
+               
+               # #debugging output
+               # problems_test <- report_problems_table(active_data.df())%>%
+               #   data.table::fwrite(file.path(project.dir, cedr_path, "problems.csv"))
+               # 
+               # #debugging output
+               # qualifier_test <- report_qualifiers_table(active_data.df())%>%
+               #   data.table::fwrite(file.path(project.dir, cedr_path, "qualifiers.csv"))
              })

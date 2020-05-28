@@ -57,28 +57,34 @@ observeEvent(input$selected_tab#
   #only runs if active_data has been assigned and written to dirctory
   if(file.exists("data/ACTIVE/active_data.csv")){#paste0(project.dir,"data/ACTIVE/", "active_data.csv"))){
   pal <- colorNumeric(palette = c("yellow","purple"), domain = active_data.df()$measurevalue)
+  
+  
+  #grab active data
+  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
+                                      header = TRUE,
+                                      data.table = FALSE)
     
     
-  proxy <- leafletProxy("map", data = active_data.df()$measurevalue) %>%
+  proxy <- leafletProxy("map", data = active_data.df$measurevalue) %>%
     clearMarkers() %>%
-    addCircleMarkers(data = active_data.df(),
+    addCircleMarkers(data = active_data.df,
                      lng = ~longitude,
                      lat = ~latitude,
                      radius = 6,
                      #fillColor = ~ "Blues",
-                     fillColor = ~ pal(active_data.df()$measurevalue),
-                       #pal(active_data.df()$measurevalue),
+                     fillColor = ~ pal(active_data.df$measurevalue),
+                       #pal(active_data.df$measurevalue),
                      stroke = TRUE,
                      weight = 1,
                      color = "black",
                      fillOpacity = 1,
-                     label = paste(as.Date(active_data.df()$sampledate)),
-                     popup=paste('<strong>Date:</strong>', active_data.df()$sampledate, "<br>",
-                                 '<strong>Value:</strong>', active_data.df()$measurevalue, "<br>",
-                                 '<strong>Unit:</strong>', active_data.df()$unit, "<br>",
-                                 '<strong>Station:</strong>', active_data.df()$station, "<br",
-                                 '<strong>Latitude:</strong>', formatC(active_data.df()$latitude, digits = 4, format = "f"), "<br",
-                                 '<strong>Longitude:</strong>', formatC(active_data.df()$longitude, digits = 4, format = "f")),
+                     label = paste(as.Date(active_data.df$sampledate)),
+                     popup=paste('<strong>Date:</strong>', active_data.df$sampledate, "<br>",
+                                 '<strong>Value:</strong>', active_data.df$measurevalue, "<br>",
+                                 '<strong>Unit:</strong>', active_data.df$unit, "<br>",
+                                 '<strong>Station:</strong>', active_data.df$station, "<br",
+                                 '<strong>Latitude:</strong>', formatC(active_data.df$latitude, digits = 4, format = "f"), "<br",
+                                 '<strong>Longitude:</strong>', formatC(active_data.df$longitude, digits = 4, format = "f")),
                      options = popupOptions(maxHeight = 50)
                      )
 
