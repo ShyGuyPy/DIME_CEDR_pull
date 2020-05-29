@@ -44,6 +44,9 @@ toListenReport <- reactive({
 observeEvent(#toListenReport()#
   input$select_data
              , {
+               
+               if(file.exists("data/ACTIVE/active_data.csv")){
+                 
   output$problem_table <- DT::renderDataTable({report_problems_table(active_data.df())}) 
   output$qualifier_table <- DT::renderDataTable({report_qualifiers_table(active_data.df())}) 
   
@@ -54,10 +57,14 @@ observeEvent(#toListenReport()#
   #debugging output
   qualifier_test <- report_qualifiers_table(active_data.df())%>%
     data.table::fwrite(file.path(project.dir, cedr_path, "qualifiers.csv"))
+  
+               }#end of if exists
 })
 
 observeEvent(input$selected_tab#input$select_data
              , {
+               
+               if(file.exists("data/ACTIVE/active_data.csv")){
                
                active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
                                                    header = TRUE,
@@ -73,4 +80,6 @@ observeEvent(input$selected_tab#input$select_data
                # #debugging output
                # qualifier_test <- report_qualifiers_table(active_data.df())%>%
                #   data.table::fwrite(file.path(project.dir, cedr_path, "qualifiers.csv"))
+               
+               }#end of if exists
              })
