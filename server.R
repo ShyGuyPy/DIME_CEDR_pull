@@ -4,8 +4,11 @@ shinyServer(function(input, output, session) {
   
   
   #if(file.exists(paste0(active_path, "active_data.csv"))){
-    active_data.df <- reactive({ fread(paste0(active_path, "active_data.csv"),
+    active_data.df <- reactive({ 
+      if(file.exists(paste0(active_path, "active_data.csv"))){
+      fread(paste0(active_path, "active_data.csv"),
                                                data.table = FALSE)
+      }#end of if exists
     })
   #}
   
