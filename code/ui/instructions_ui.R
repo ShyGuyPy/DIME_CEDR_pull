@@ -22,5 +22,5 @@ tags$div(
   p("Displays graph for selected data"),
   br(),
   h2("Map Data"),
-  p("Displays map for selected data"),
+  p("Displays map for selected data")
 )
