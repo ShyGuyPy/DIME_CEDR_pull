@@ -34,35 +34,41 @@ observeEvent(input$selected_tab#
   #input$select_data
   , {
 
-  #selects file path based on selection
-  if(input$active_data == "cedr"){
-    current_path = cedr_path
-  } else if(input$active_data == "nwis"){
-    current_path = nwis_path
-  } else if(input$active_data == "wqdp"){
-    current_path = wqdp_path
-  }
-
-  #path/filename for placing selected data into active data
-  our_data <- paste0(current_path, input$active_data, "_raw", ".csv")
-
-  
-  #tests if the raw data has been downloaded
-  if(file.exists(our_data)){
-    #read selected data
-    #active_data.df <- active_data.df() #active_data.df <- data.table::fread(our_data,
-                                       # data.table = FALSE)
-  }
+  # #selects file path based on selection
+  # if(input$active_data == "cedr"){
+  #   current_path = cedr_path
+  # } else if(input$active_data == "nwis"){
+  #   current_path = nwis_path
+  # } else if(input$active_data == "wqdp"){
+  #   current_path = wqdp_path
+  # }
+  # 
+  # #path/filename for placing selected data into active data
+  # our_data <- paste0(current_path, input$active_data, "_raw", ".csv")
+  # 
+  # 
+  # #tests if the raw data has been downloaded
+  # if(file.exists(our_data)){
+  #   #read selected data
+  #   #active_data.df <- active_data.df() #active_data.df <- data.table::fread(our_data,
+  #                                      # data.table = FALSE)
+  # }
 
   #only runs if active_data has been assigned and written to dirctory
   if(file.exists("data/ACTIVE/active_data.csv")){#paste0(project.dir,"data/ACTIVE/", "active_data.csv"))){
-  pal <- colorNumeric(palette = c("yellow","purple"), domain = active_data.df()$measurevalue)
+    
+    #grab active data
+    active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
+                                        header = TRUE,
+                                        data.table = FALSE)
+    
+  pal <- colorNumeric(palette = c("yellow","purple"), domain = active_data.df$measurevalue)
   
   
-  #grab active data
-  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
-                                      header = TRUE,
-                                      data.table = FALSE)
+
+  
+  #checks if active_data.df has data
+  if(length(active_data.df) != 0){
     
     
   proxy <- leafletProxy("map", data = active_data.df$measurevalue) %>%
@@ -87,6 +93,8 @@ observeEvent(input$selected_tab#
                                  '<strong>Longitude:</strong>', formatC(active_data.df$longitude, digits = 4, format = "f")),
                      options = popupOptions(maxHeight = 50)
                      )
+  
+  }#end of if length != 0
 
     #pal <- colorNumeric(palette = c("yellow","purple"), domain = active_data.df()$measurevalue)#select_data()$measurevalue)
 

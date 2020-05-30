@@ -47,17 +47,28 @@ observeEvent(#toListenReport()#
                
                if(file.exists("data/ACTIVE/active_data.csv")){
                  
-  output$problem_table <- DT::renderDataTable({report_problems_table(active_data.df())}) 
-  output$qualifier_table <- DT::renderDataTable({report_qualifiers_table(active_data.df())}) 
+                 #assign acgive_data
+                 active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
+                                                     header = TRUE,
+                                                     data.table = FALSE)
+                 
+                 #checks if active_data.df has data
+                 if(length(active_data.df) != 0){
+                 
+  output$problem_table <- DT::renderDataTable({report_problems_table(active_data.df)}) 
+  output$qualifier_table <- DT::renderDataTable({report_qualifiers_table(active_data.df)}) 
   
   #debugging output
-  problems_test <- report_problems_table(active_data.df())%>%
+  problems_test <- report_problems_table(active_data.df)%>%
     data.table::fwrite(file.path(project.dir, cedr_path, "problems.csv"))
   
   #debugging output
-  qualifier_test <- report_qualifiers_table(active_data.df())%>%
+  qualifier_test <- report_qualifiers_table(active_data.df)%>%
     data.table::fwrite(file.path(project.dir, cedr_path, "qualifiers.csv"))
   
+  
+               }#end of if length != 0
+                 
                }#end of if exists
 })
 
@@ -66,9 +77,13 @@ observeEvent(input$selected_tab#input$select_data
                
                if(file.exists("data/ACTIVE/active_data.csv")){
                
+               #assign acgive_data
                active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
                                                    header = TRUE,
                                                    data.table = FALSE)
+               
+               #checks if active_data.df has data
+               if(length(active_data.df) != 0){
                
                output$problem_table <- DT::renderDataTable({report_problems_table(active_data.df)})#active_data.df())})
                output$qualifier_table <- DT::renderDataTable({report_qualifiers_table(active_data.df)})#active_data.df())})
@@ -80,6 +95,8 @@ observeEvent(input$selected_tab#input$select_data
                # #debugging output
                # qualifier_test <- report_qualifiers_table(active_data.df())%>%
                #   data.table::fwrite(file.path(project.dir, cedr_path, "qualifiers.csv"))
+               
+               }#end of if length != 0
                
                }#end of if exists
              })
