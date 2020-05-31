@@ -1,4 +1,7 @@
 observeEvent(input$select_data, {
+  #disable action button to prevent multiple clicks
+  shinyjs::disable("select_data")
+  
   #progress indicator
   withProgress(message = "setting selected data to active data", value = 0, {
     #increment progress bar
@@ -58,6 +61,10 @@ observeEvent(input$select_data, {
   #increment progress bar
   incProgress(1/2) 
   }) #end of withProgress
+  
+  #enable action button
+  shinyjs::enable("select_data")
+  
 }) #end observe select_data
 
 
