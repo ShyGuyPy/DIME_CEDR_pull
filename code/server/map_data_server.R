@@ -93,6 +93,20 @@ observeEvent(input$selected_tab#
                                  '<strong>Longitude:</strong>', formatC(active_data.df$longitude, digits = 4, format = "f")),
                      options = popupOptions(maxHeight = 50)
                      )
+
+  #add parameters and legend
+  proxy <- leafletProxy("map", data = active_data.df) %>%
+    clearControls() %>%
+    addLegend(#"bottomright"
+      "topleft", pal = pal, 
+      values = active_data.df$measurevalue,
+      #values =select_data()$measurevalue, 
+              #title = as.character(input$data), 
+              opacity = 1)
+
+  
+  
+  
   
   }#end of if length != 0
 
