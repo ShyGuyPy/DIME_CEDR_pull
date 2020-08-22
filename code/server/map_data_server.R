@@ -33,6 +33,8 @@ observeEvent(input$selected_tab#
   #input$map_data_tab#toListenMap()
   #input$select_data
   , {
+    
+   
 
   # #selects file path based on selection
   # if(input$active_data == "cedr"){
@@ -56,6 +58,10 @@ observeEvent(input$selected_tab#
 
   #only runs if active_data has been assigned and written to dirctory
   if(file.exists("data/ACTIVE/active_data.csv")){#paste0(project.dir,"data/ACTIVE/", "active_data.csv"))){
+    
+    #reset scale of view
+    proxy <- leafletProxy("map", data = active_data.df) %>%
+      setView(-78.193593, 38.917359, zoom = 7.5)
     
     #grab active data
     active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
@@ -98,10 +104,10 @@ observeEvent(input$selected_tab#
   proxy <- leafletProxy("map", data = active_data.df) %>%
     clearControls() %>%
     addLegend(#"bottomright"
-      "topleft", pal = pal, 
+      "topleft", pal = pal,
       values = active_data.df$measurevalue,
-      #values =select_data()$measurevalue, 
-              #title = as.character(input$data), 
+      #values =select_data()$measurevalue,
+              #title = as.character(input$data),
               opacity = 1)
 
   
