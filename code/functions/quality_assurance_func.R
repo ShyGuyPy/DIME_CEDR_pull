@@ -185,10 +185,10 @@ report_problems_table <- function(active_data){
                                     TRUE~"no problem") ) %>%
       filter(definition != "no problem") %>%
       group_by(error_code) %>%
-      #group_by(parameter) %>%
+      group_by(parameter) %>%
       mutate(n = n()) %>%
       ungroup() %>%
-      select(#parameter,
+      select(parameter,
         error_code,definition, n) %>%
       unique()
 
@@ -213,9 +213,11 @@ report_qualifiers_table <- function(active_data){
                                   TRUE~"no qualifier") ) %>%
     filter(definition != "no qualifier") %>%
     group_by(error_code) %>%
+    group_by(parameter) %>%
     mutate(n = n()) %>%
     ungroup() %>%
-    select(error_code,definition, n) %>%
+    select(parameter,
+           error_code,definition, n) %>%
     unique()
   
 }
