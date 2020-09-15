@@ -1,5 +1,5 @@
 summary_m3_table <- function(){
-  active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
+  active_data.df <- data.table::fread(paste0(project.dir, active_path, "active_data.csv"),
                                         data.table = FALSE) #%>%
   
   param_list.df <- active_data.df %>%
