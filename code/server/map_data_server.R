@@ -127,6 +127,7 @@ toListenMap <- reactive({
   list(input$select_data,input$map_data_tab)
 })
 
+#activates on map tab selection
 toListenMap2 <- reactive({
   list(input$map_data_tab)
   #file.exists("data/ACTIVE/active_data.csv"),
