@@ -13,15 +13,15 @@ toListenPlot <- reactive({
 })
 
 
-observeEvent(input$select_data, {
+observeEvent(input$selected_tab, {#input$select_data, {
                #data_into_plot, {
 
   #read file
-  plot_data.df <- active_data.df %>%#() %>%#data.table::fread(paste0(active_path, "active_data.csv"),
+  plot_data.df <- active_data.df #%>%#() %>%#data.table::fread(paste0(active_path, "active_data.csv"),
                                       #header = TRUE,
                                       #data.table = FALSE) %>%
 
-  filter(parameter == "salinity")#"spcond")
+  #filter(parameter == "salinity")#"spcond")
 
 
   output$plot_the_data <- renderPlot({ggplot(

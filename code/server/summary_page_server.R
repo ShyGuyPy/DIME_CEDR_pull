@@ -3,7 +3,7 @@ source("server.R", local = TRUE)
 if(file.exists(paste0(project.dir,active_path, "active_data.csv"))){#"data/ACTIVE/active_data.csv")){
   
   #assign active_data
-  active_data.df <- data.table::fread(paste0(project.dir, active_path, "active_data.csv"),
+  active_data.df <- data.table::fread(paste0(project.dir, active_path, "/","active_data.csv"),
                                       header = TRUE,
                                       data.table = FALSE)
 }
@@ -40,13 +40,21 @@ if(file.exists(paste0(project.dir,active_path, "active_data.csv"))){#"data/ACTIV
 
 
 
-#table for mean median mode - not currently in use
-# output$m3_table <- DT::renderDataTable({summary_m3_table()})
-# 
-# 
-# observeEvent(input$select_data, {
-# active_data.df <- data.table::fread(paste0(project.dir,active_path, "active_data.csv"),
-#                                     data.table = FALSE)
-# })
+# table for mean median mode - not currently in use
+output$m3_table <- DT::renderDataTable({summary_m3_table()})
+
+
+observeEvent(input$selected_tab, {#input$select_data, {
+
+if(file.exists(paste0(project.dir,active_path,"/", "active_data.csv"))){
+  
+active_data.df <- data.table::fread(paste0(project.dir,active_path, "active_data.csv"),
+                                    header = TRUE,
+                                    data.table = FALSE)
+
+}#end of if file exist
+
+
+})
 
 
