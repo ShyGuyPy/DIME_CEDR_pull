@@ -10,7 +10,7 @@ tabPanel("Location Map",
                                   "PO4" = "po4",
                                   "Chla" = "chla",
                                   "Pheophytin" = "pheo",
-                                  "DOC" = "doc"),inline = TRUE),
+                                  "DOC" = "doc"),selected = c("salinity","din","secchi","po4","chla","pheo","doc"),inline = TRUE, ),
              
              #salinity conditionalPanel
              conditionalPanel(

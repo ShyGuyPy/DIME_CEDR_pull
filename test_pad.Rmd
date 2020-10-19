@@ -1,0 +1,61 @@
+---
+title: "test_pad"
+author: "Luke Vawter"
+date: "10/19/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+project.dir <- rprojroot::find_rstudio_root_file()
+
+print(project.dir)
+
+active_path <- "data/ACTIVE/"
+
+    #check if data exists
+    if(file.exists(paste0(active_path, "active_data.csv"))){#("data/ACTIVE/active_data.csv")){
+      print("file exists")
+      
+
+      active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
+                                    header = TRUE,
+                                    data.table = FALSE)
+    
+    }else{print("file does not exist")}
+
+ if(length(active_data.df) != 0){
+   print("file has data")
+   
+       
+    test_salinity.df <- active_data.df %>%
+      filter(parameter == "salinity")
+    
+    test_din.df <- active_data.df %>%
+      filter(parameter == "din")
+    
+    test_secchi.df <- active_data.df %>%
+      filter(parameter == "secchi")
+    
+    test_po4.df <- active_data.df %>%
+      filter(parameter == "po4")
+    
+    test_chla.df <- active_data.df %>%
+      filter(parameter == "chla")
+    
+    test_pheo.df <- active_data.df %>%
+      filter(parameter == "pheo")
+    
+    test_doc.df <- active_data.df %>%
+      filter(parameter == "doc")
+    
+ pal <- colorNumeric(palette = c("yellow","purple"), domain = active_data.df$measurevalue)
+ }
+
+
+
+```
+
