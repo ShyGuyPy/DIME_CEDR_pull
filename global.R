@@ -161,8 +161,20 @@ test_condition <- TRUE
 
 
   
+#titles for maps
+sal_title = htmltools::tags$p("Salinity")
 
+din_title = htmltools::tags$p("Din")
 
+secchi_title = htmltools::tags$p("Secchi")
+
+po4_title = htmltools::tags$p("Po4")
+
+chla_title = htmltools::tags$p("Chla")
+
+pheo_title = htmltools::tags$p("Pheo")
+
+doc_title = htmltools::tags$p("Doc")
 
 
 

@@ -12,8 +12,23 @@ if(file.exists(paste0(#project.dir,
   salinity.df <- active_data.df %>%
     filter(parameter == "salinity")
   
+  din.df <- active_data.df %>%
+    filter(parameter == "din")
+  
+  secchi.df <- active_data.df %>%
+    filter(parameter == "secchi")
+  
+  po4.df <- active_data.df %>%
+    filter(parameter == "po4")
+  
   chla.df <- active_data.df %>%
     filter(parameter == "chla")
+  
+  pheo.df <- active_data.df %>%
+    filter(parameter == "pheo")
+  
+  doc.df <- active_data.df %>%
+    filter(parameter == "doc")
 }#end if exists
 
 if(#if_empty(active_data.df)){
@@ -167,8 +182,26 @@ observeEvent(input$selected_tab,#
                    header = TRUE,
                    data.table = FALSE)
 
+                 salinity.df <- active_data.df %>%
+                   filter(parameter == "salinity")
+                 
+                 din.df <- active_data.df %>%
+                   filter(parameter == "din")
+                 
+                 secchi.df <- active_data.df %>%
+                   filter(parameter == "secchi")
+                 
+                 po4.df <- active_data.df %>%
+                   filter(parameter == "po4")
+                 
                  chla.df <- active_data.df %>%
                    filter(parameter == "chla")
+                 
+                 pheo.df <- active_data.df %>%
+                   filter(parameter == "pheo")
+                 
+                 doc.df <- active_data.df %>%
+                   filter(parameter == "doc")
 
                  pal <- colorNumeric(palette = c("yellow","purple"), domain = active_data.df$measurevalue)
 
@@ -202,7 +235,8 @@ observeEvent(input$selected_tab,#
                                   '<strong>Station:</strong>', salinity.df$station, "<br",
                                   '<strong>Latitude:</strong>', formatC(salinity.df$latitude, digits = 4, format = "f"), "<br",
                                   '<strong>Longitude:</strong>', formatC(salinity.df$longitude, digits = 4, format = "f")),
-                      options = popupOptions(maxHeight = 50)
+                      options = popupOptions(maxHeight = 50) #%>%
+                        
      )
    
    #add parameters and legend
@@ -213,13 +247,137 @@ observeEvent(input$selected_tab,#
        values = salinity.df$measurevalue,
        #values =select_data()$measurevalue,
        #title = as.character(input$data),
-       opacity = 1)
+       opacity = 1) %>%
+     addControl(sal_title, position = "topright")
    #end salinity map proxy
    
  }#end of check if salinity.df has data
    
    
+   #check if chla.df has data
+   if(if_empty(din.df)){
+   
+   #din map proxy
+   proxy <- leafletProxy("map_din", data = din.df$measurevalue) %>%
+     clearMarkers() %>%
+     addCircleMarkers(data = din.df,
+                      lng = ~longitude,
+                      lat = ~latitude,
+                      radius = 6,
+                      #fillColor = ~ "Blues",
+                      fillColor = ~ pal(din.df$measurevalue),
+                      #pal(active_data.df$measurevalue),
+                      stroke = TRUE,
+                      weight = 1,
+                      color = "black",
+                      fillOpacity = 1,
+                      label = paste(as.Date(din.df$sampledate)),
+                      popup=paste('<strong>Date:</strong>', din.df$sampledate, "<br>",
+                                  '<strong>Value:</strong>', din.df$measurevalue, "<br>",
+                                  '<strong>Unit:</strong>', din.df$unit, "<br>",
+                                  '<strong>Station:</strong>', din.df$station, "<br",
+                                  '<strong>Latitude:</strong>', formatC(din.df$latitude, digits = 4, format = "f"), "<br",
+                                  '<strong>Longitude:</strong>', formatC(din.df$longitude, digits = 4, format = "f")),
+                      options = popupOptions(maxHeight = 50)
+     )
+   
+   #add parameters and legend
+   proxy <- leafletProxy("map_din", data = din.df) %>%
+     clearControls() %>%
+     addLegend(#"bottomright"
+       "topleft", pal = pal,
+       values = din.df$measurevalue,
+       #values =select_data()$measurevalue,
+       #title = as.character(input$data),
+       opacity = 1) %>%
+     addControl(din_title, position = "topright")
+   #end din map proxy
+   
+ }#end of check if din.df has data
+   
+   #check if chla.df has data
+   if(if_empty(secchi.df)){
+   
+   
+   #secchi map proxy
+   proxy <- leafletProxy("map_secchi", data = secchi.df$measurevalue) %>%
+     clearMarkers() %>%
+     addCircleMarkers(data = secchi.df,
+                      lng = ~longitude,
+                      lat = ~latitude,
+                      radius = 6,
+                      #fillColor = ~ "Blues",
+                      fillColor = ~ pal(secchi.df$measurevalue),
+                      #pal(active_data.df$measurevalue),
+                      stroke = TRUE,
+                      weight = 1,
+                      color = "black",
+                      fillOpacity = 1,
+                      label = paste(as.Date(secchi.df$sampledate)),
+                      popup=paste('<strong>Date:</strong>', secchi.df$sampledate, "<br>",
+                                  '<strong>Value:</strong>', secchi.df$measurevalue, "<br>",
+                                  '<strong>Unit:</strong>', secchi.df$unit, "<br>",
+                                  '<strong>Station:</strong>', secchi.df$station, "<br",
+                                  '<strong>Latitude:</strong>', formatC(secchi.df$latitude, digits = 4, format = "f"), "<br",
+                                  '<strong>Longitude:</strong>', formatC(secchi.df$longitude, digits = 4, format = "f")),
+                      options = popupOptions(maxHeight = 50)
+     )
+   
+   #add parameters and legend
+   proxy <- leafletProxy("map_secchi", data = secchi.df) %>%
+     clearControls() %>%
+     addLegend(#"bottomright"
+       "topleft", pal = pal,
+       values = secchi.df$measurevalue,
+       #values =select_data()$measurevalue,
+       #title = as.character(input$data),
+       opacity = 1) %>%
+     addControl(secchi_title, position = "topright")
+   #end secchi map proxy
+   
+ }#end of check if secchi.df has data
+   
+   
+   #check if po4.df has data
+   if(if_empty(po4.df)){  
+     #po4 map proxy
+     proxy <- leafletProxy("map_po4", data = po4.df$measurevalue) %>%
+       clearMarkers() %>%
+       addCircleMarkers(data = po4.df,
+                        lng = ~longitude,
+                        lat = ~latitude,
+                        radius = 6,
+                        #fillColor = ~ "Blues",
+                        fillColor = ~ pal(po4.df$measurevalue),
+                        #pal(active_data.df$measurevalue),
+                        stroke = TRUE,
+                        weight = 1,
+                        color = "black",
+                        fillOpacity = 1,
+                        label = paste(as.Date(po4.df$sampledate)),
+                        popup=paste('<strong>Date:</strong>', po4.df$sampledate, "<br>",
+                                    '<strong>Value:</strong>', po4.df$measurevalue, "<br>",
+                                    '<strong>Unit:</strong>', po4.df$unit, "<br>",
+                                    '<strong>Station:</strong>', po4.df$station, "<br",
+                                    '<strong>Latitude:</strong>', formatC(po4.df$latitude, digits = 4, format = "f"), "<br",
+                                    '<strong>Longitude:</strong>', formatC(po4.df$longitude, digits = 4, format = "f")),
+                        options = popupOptions(maxHeight = 50)
+       )
      
+     #add parameters and legend
+     proxy <- leafletProxy("map_po4", data = po4.df) %>%
+       clearControls() %>%
+       addLegend(#"bottomright"
+         "topleft", pal = pal,
+         values = po4.df$measurevalue,
+         #values =select_data()$measurevalue,
+         #title = as.character(input$data),
+         opacity = 1) %>%
+       addControl(po4_title, position = "topright")
+     #end po4 map proxy
+   }#end of check if po4.df has data
+   
+   
    
    #check if chla.df has data
    if(if_empty(chla.df)){
@@ -256,14 +414,92 @@ observeEvent(input$selected_tab,#
        values = chla.df$measurevalue,
        #values =select_data()$measurevalue,
        #title = as.character(input$data),
-       opacity = 1)
+       opacity = 1) %>%
+     addControl(chla_title, position = "topright")
    #end chla map proxy
    
-   
-     
-
-   
    }#end of check if chla.df has data
+   
+   
+   #check if pheo.df has data
+   if(if_empty(pheo.df)){  
+     #pheo map proxy
+     proxy <- leafletProxy("map_pheo", data = pheo.df$measurevalue) %>%
+       clearMarkers() %>%
+       addCircleMarkers(data = pheo.df,
+                        lng = ~longitude,
+                        lat = ~latitude,
+                        radius = 6,
+                        #fillColor = ~ "Blues",
+                        fillColor = ~ pal(pheo.df$measurevalue),
+                        #pal(active_data.df$measurevalue),
+                        stroke = TRUE,
+                        weight = 1,
+                        color = "black",
+                        fillOpacity = 1,
+                        label = paste(as.Date(pheo.df$sampledate)),
+                        popup=paste('<strong>Date:</strong>', pheo.df$sampledate, "<br>",
+                                    '<strong>Value:</strong>', pheo.df$measurevalue, "<br>",
+                                    '<strong>Unit:</strong>', pheo.df$unit, "<br>",
+                                    '<strong>Station:</strong>', pheo.df$station, "<br",
+                                    '<strong>Latitude:</strong>', formatC(pheo.df$latitude, digits = 4, format = "f"), "<br",
+                                    '<strong>Longitude:</strong>', formatC(pheo.df$longitude, digits = 4, format = "f")),
+                        options = popupOptions(maxHeight = 50)
+       )
+     
+     #add parameters and legend
+     proxy <- leafletProxy("map_pheo", data = pheo.df) %>%
+       clearControls() %>%
+       addLegend(#"bottomright"
+         "topleft", pal = pal,
+         values = pheo.df$measurevalue,
+         #values =select_data()$measurevalue,
+         #title = as.character(input$data),
+         opacity = 1) %>%
+       addControl(pheo_title, position = "topright")
+     #end pheo map proxy
+   }#end of check if pheo.df has data
+   
+   
+   #check if doc.df has data
+   if(if_empty(doc.df)){  
+     #doc map proxy
+     proxy <- leafletProxy("map_doc", data = doc.df$measurevalue) %>%
+       clearMarkers() %>%
+       addCircleMarkers(data = doc.df,
+                        lng = ~longitude,
+                        lat = ~latitude,
+                        radius = 6,
+                        #fillColor = ~ "Blues",
+                        fillColor = ~ pal(doc.df$measurevalue),
+                        #pal(active_data.df$measurevalue),
+                        stroke = TRUE,
+                        weight = 1,
+                        color = "black",
+                        fillOpacity = 1,
+                        label = paste(as.Date(doc.df$sampledate)),
+                        popup=paste('<strong>Date:</strong>', doc.df$sampledate, "<br>",
+                                    '<strong>Value:</strong>', doc.df$measurevalue, "<br>",
+                                    '<strong>Unit:</strong>', doc.df$unit, "<br>",
+                                    '<strong>Station:</strong>', doc.df$station, "<br",
+                                    '<strong>Latitude:</strong>', formatC(doc.df$latitude, digits = 4, format = "f"), "<br",
+                                    '<strong>Longitude:</strong>', formatC(doc.df$longitude, digits = 4, format = "f")),
+                        options = popupOptions(maxHeight = 50)
+       )
+     
+     #add parameters and legend
+     proxy <- leafletProxy("map_doc", data = doc.df) %>%
+       clearControls() %>%
+       addLegend(#"bottomright"
+         "topleft", pal = pal,
+         values = doc.df$measurevalue,
+         #values =select_data()$measurevalue,
+         #title = as.character(input$data),
+         opacity = 1) %>%
+       addControl(doc_title, position = "topright")
+     #end doc map proxy
+   }#end of check if doc.df has data
+   
 
  }#end of if length != 0
 
