@@ -1,13 +1,21 @@
-source("server.R", local = TRUE)
 
-if(file.exists(paste0(project.dir,active_path, "active_data.csv"))){#"data/ACTIVE/active_data.csv")){
+#
+if(file.exists(paste0(#project.dir,
+  active_path, "active_data.csv"))){#"data/ACTIVE/active_data.csv")){
 
-  #assign acgive_data
-  active_data.df <- data.table::fread(paste0(project.dir, active_path, "active_data.csv"),
+  #assign active_data
+  active_data.df <- data.table::fread(paste0(#project.dir, 
+    active_path, "active_data.csv"),
                                       header = TRUE,
                                       data.table = FALSE)
-}
+  
+  chla.df <- active_data.df %>%
+    filter(parameter == "chla")
+}#end if exists
 
+if(#if_empty(active_data.df)){
+  file.exists(paste0(#project.dir,
+    active_path, "active_data.csv"))){
 
 output$map_chla <- renderLeaflet({
   leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
@@ -24,6 +32,8 @@ output$map_chla <- renderLeaflet({
     hideGroup("Chesapeake Bay Watershed") %>%
     hideGroup("USGS Stream Gage")
 })
+
+}#end if exists
 
 
 
@@ -43,7 +53,7 @@ toListenMap2 <- reactive({
 observeEvent(input$selected_tab,#
              {
 
-               #only runs if active_data has been assigned and written to dirctory
+               #only runs if active_data has been assigned and written to directory
                if(file.exists(paste0(#project.dir,
                  active_path, "active_data.csv"))){#"data/ACTIVE/active_data.csv")){#paste0(project.dir,"data/ACTIVE/", "active_data.csv"))){
 
@@ -66,13 +76,13 @@ observeEvent(input$selected_tab,#
 
 
  #checks if active_data.df has data
- if(length(active_data.df) != 0){
+ if(if_empty(active_data.df)){#(empty(active_data.df) == FALSE || is.na(empty(active_data.df))){
    
    
      
    
    #check if chla.df has data
-   if(length(chla.df) != 0){
+   if(if_empty(chla.df)){
 
    #chla map proxy
    proxy <- leafletProxy("map_chla", data = chla.df$measurevalue) %>%
@@ -108,6 +118,8 @@ observeEvent(input$selected_tab,#
        #title = as.character(input$data),
        opacity = 1)
    #end chla map proxy
+     
+
    
    }#end of check if chla.df has data
 
@@ -116,6 +128,8 @@ observeEvent(input$selected_tab,#
                }#end of if exist active_data
              })#end of observe event
 
+
+if(if_empty(active_data.df)){
 
 # Zoom control - zoom out
 observeEvent(input$map_zoom_out ,{
@@ -131,3 +145,5 @@ observeEvent(input$map_zoom_in ,{
             lng  = (input$map_bounds$east + input$map_bounds$west) / 2,
             zoom = input$map_zoom + 1)
 })
+
+}#end if exists

@@ -59,3 +59,43 @@ active_path <- "data/ACTIVE/"
 
 ```
 
+```{r}
+  #assign active_data
+  active_data.df <- data.table::fread(paste0(#project.dir, 
+    active_path, "active_data.csv"),
+                                      header = TRUE,
+                                      data.table = FALSE)
+
+if(length(active_data.df) >5){
+  print("the data has values")
+} else { "the data is empty"}
+
+print(length(active_data.df))
+
+library(plyr)
+if(empty(active_data.df)){print("is empty")}
+print(empty(active_data.df))
+
+if(empty(active_data.df) == FALSE){print("there is data")}else{print("no good")}
+print(empty(active_data.df) == FALSE)
+
+chla.df <- active_data.df %>%
+  filter(parameter == "chla")
+
+if(empty(chla.df) == FALSE){print("there is chla data")}else{print("chla no good")}
+print(empty(chla.df) == FALSE)
+
+#checks if active_data.df has data
+ if(empty(active_data.df) == FALSE){
+   #check if chla.df has data
+   if(empty(chla.df)== FALSE){
+     Print("2 good")
+   }}
+
+if_empty <- function(dataframe) {
+  empty(dataframe)== FALSE || is.na(empty(dataframe))
+}
+
+if(if_empty(active_data.df)){"print func not working"}else{print("func working")}
+```
+
