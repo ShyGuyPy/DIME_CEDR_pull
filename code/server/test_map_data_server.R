@@ -9,6 +9,9 @@ if(file.exists(paste0(#project.dir,
                                       header = TRUE,
                                       data.table = FALSE)
   
+  salinity.df <- active_data.df %>%
+    filter(parameter == "salinity")
+  
   chla.df <- active_data.df %>%
     filter(parameter == "chla")
 }#end if exists
@@ -17,21 +20,118 @@ if(#if_empty(active_data.df)){
   file.exists(paste0(#project.dir,
     active_path, "active_data.csv"))){
 
-output$map_chla <- renderLeaflet({
-  leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
-    addTiles() %>%
-    setView(-78.193593, 38.917359, zoom = 7.5) %>%
-    addPolygons(data = HUC8, fill = FALSE, weight = 2, color = "steelblue", group = "HUC8") %>%
-    addPolygons(data = PRB, fill = FALSE, weight = 3, color = "navy", group = "Potomac River Watershed") %>%
-    addPolygons(data = ches, fill = FALSE, weight = 3, color = "navy", group = "Chesapeake Bay Watershed") %>%
-    addCircles(data = gage, lng = ~LONDD, lat = ~LATDD, group = "USGS Stream Gage",
-               popup=paste('<strong>Name:</strong>', gage$STATION_NM, "<br>",
-                           '<strong>ID:</strong>', gage$STATION_NO)) %>%
-    addLayersControl(overlayGroups = c("Potomac River Watershed", "Chesapeake Bay Watershed", "HUC8", "USGS Stream Gage"), position = "bottomleft",
-                     options = layersControlOptions(collapsed = FALSE)) %>%
-    hideGroup("Chesapeake Bay Watershed") %>%
-    hideGroup("USGS Stream Gage")
-})
+  
+  output$map_salinity <- renderLeaflet({
+    leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
+      addTiles() %>%
+      setView(-78.193593, 38.917359, zoom = 7.5) %>%
+      addPolygons(data = HUC8, fill = FALSE, weight = 2, color = "steelblue", group = "HUC8") %>%
+      addPolygons(data = PRB, fill = FALSE, weight = 3, color = "navy", group = "Potomac River Watershed") %>%
+      addPolygons(data = ches, fill = FALSE, weight = 3, color = "navy", group = "Chesapeake Bay Watershed") %>%
+      addCircles(data = gage, lng = ~LONDD, lat = ~LATDD, group = "USGS Stream Gage",
+                 popup=paste('<strong>Name:</strong>', gage$STATION_NM, "<br>",
+                             '<strong>ID:</strong>', gage$STATION_NO)) %>%
+      addLayersControl(overlayGroups = c("Potomac River Watershed", "Chesapeake Bay Watershed", "HUC8", "USGS Stream Gage"), position = "bottomleft",
+                       options = layersControlOptions(collapsed = FALSE)) %>%
+      hideGroup("Chesapeake Bay Watershed") #%>%
+    #hideGroup("USGS Stream Gage")
+  })
+  
+  output$map_din <- renderLeaflet({
+    leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
+      addTiles() %>%
+      setView(-78.193593, 38.917359, zoom = 7.5) %>%
+      addPolygons(data = HUC8, fill = FALSE, weight = 2, color = "steelblue", group = "HUC8") %>%
+      addPolygons(data = PRB, fill = FALSE, weight = 3, color = "navy", group = "Potomac River Watershed") %>%
+      addPolygons(data = ches, fill = FALSE, weight = 3, color = "navy", group = "Chesapeake Bay Watershed") %>%
+      addCircles(data = gage, lng = ~LONDD, lat = ~LATDD, group = "USGS Stream Gage",
+                 popup=paste('<strong>Name:</strong>', gage$STATION_NM, "<br>",
+                             '<strong>ID:</strong>', gage$STATION_NO)) %>%
+      addLayersControl(overlayGroups = c("Potomac River Watershed", "Chesapeake Bay Watershed", "HUC8", "USGS Stream Gage"), position = "bottomleft",
+                       options = layersControlOptions(collapsed = FALSE)) %>%
+      hideGroup("Chesapeake Bay Watershed") #%>%
+    #hideGroup("USGS Stream Gage")
+  })
+  
+  output$map_secchi <- renderLeaflet({
+    leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
+      addTiles() %>%
+      setView(-78.193593, 38.917359, zoom = 7.5) %>%
+      addPolygons(data = HUC8, fill = FALSE, weight = 2, color = "steelblue", group = "HUC8") %>%
+      addPolygons(data = PRB, fill = FALSE, weight = 3, color = "navy", group = "Potomac River Watershed") %>%
+      addPolygons(data = ches, fill = FALSE, weight = 3, color = "navy", group = "Chesapeake Bay Watershed") %>%
+      addCircles(data = gage, lng = ~LONDD, lat = ~LATDD, group = "USGS Stream Gage",
+                 popup=paste('<strong>Name:</strong>', gage$STATION_NM, "<br>",
+                             '<strong>ID:</strong>', gage$STATION_NO)) %>%
+      addLayersControl(overlayGroups = c("Potomac River Watershed", "Chesapeake Bay Watershed", "HUC8", "USGS Stream Gage"), position = "bottomleft",
+                       options = layersControlOptions(collapsed = FALSE)) %>%
+      hideGroup("Chesapeake Bay Watershed") #%>%
+    #hideGroup("USGS Stream Gage")
+  })
+  
+  output$map_po4 <- renderLeaflet({
+    leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
+      addTiles() %>%
+      setView(-78.193593, 38.917359, zoom = 7.5) %>%
+      addPolygons(data = HUC8, fill = FALSE, weight = 2, color = "steelblue", group = "HUC8") %>%
+      addPolygons(data = PRB, fill = FALSE, weight = 3, color = "navy", group = "Potomac River Watershed") %>%
+      addPolygons(data = ches, fill = FALSE, weight = 3, color = "navy", group = "Chesapeake Bay Watershed") %>%
+      addCircles(data = gage, lng = ~LONDD, lat = ~LATDD, group = "USGS Stream Gage",
+                 popup=paste('<strong>Name:</strong>', gage$STATION_NM, "<br>",
+                             '<strong>ID:</strong>', gage$STATION_NO)) %>%
+      addLayersControl(overlayGroups = c("Potomac River Watershed", "Chesapeake Bay Watershed", "HUC8", "USGS Stream Gage"), position = "bottomleft",
+                       options = layersControlOptions(collapsed = FALSE)) %>%
+      hideGroup("Chesapeake Bay Watershed") #%>%
+    #hideGroup("USGS Stream Gage")
+  })
+  
+  output$map_chla <- renderLeaflet({
+    leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
+      addTiles() %>%
+      setView(-78.193593, 38.917359, zoom = 7.5) %>%
+      addPolygons(data = HUC8, fill = FALSE, weight = 2, color = "steelblue", group = "HUC8") %>%
+      addPolygons(data = PRB, fill = FALSE, weight = 3, color = "navy", group = "Potomac River Watershed") %>%
+      addPolygons(data = ches, fill = FALSE, weight = 3, color = "navy", group = "Chesapeake Bay Watershed") %>%
+      addCircles(data = gage, lng = ~LONDD, lat = ~LATDD, group = "USGS Stream Gage",
+                 popup=paste('<strong>Name:</strong>', gage$STATION_NM, "<br>",
+                             '<strong>ID:</strong>', gage$STATION_NO)) %>%
+      addLayersControl(overlayGroups = c("Potomac River Watershed", "Chesapeake Bay Watershed", "HUC8", "USGS Stream Gage"), position = "bottomleft",
+                       options = layersControlOptions(collapsed = FALSE)) %>%
+      hideGroup("Chesapeake Bay Watershed") #%>%
+    #hideGroup("USGS Stream Gage")
+  })
+  
+  output$map_pheo <- renderLeaflet({
+    leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
+      addTiles() %>%
+      setView(-78.193593, 38.917359, zoom = 7.5) %>%
+      addPolygons(data = HUC8, fill = FALSE, weight = 2, color = "steelblue", group = "HUC8") %>%
+      addPolygons(data = PRB, fill = FALSE, weight = 3, color = "navy", group = "Potomac River Watershed") %>%
+      addPolygons(data = ches, fill = FALSE, weight = 3, color = "navy", group = "Chesapeake Bay Watershed") %>%
+      addCircles(data = gage, lng = ~LONDD, lat = ~LATDD, group = "USGS Stream Gage",
+                 popup=paste('<strong>Name:</strong>', gage$STATION_NM, "<br>",
+                             '<strong>ID:</strong>', gage$STATION_NO)) %>%
+      addLayersControl(overlayGroups = c("Potomac River Watershed", "Chesapeake Bay Watershed", "HUC8", "USGS Stream Gage"), position = "bottomleft",
+                       options = layersControlOptions(collapsed = FALSE)) %>%
+      hideGroup("Chesapeake Bay Watershed") #%>%
+    #hideGroup("USGS Stream Gage")
+  })
+  
+  output$map_doc <- renderLeaflet({
+    leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
+      addTiles() %>%
+      setView(-78.193593, 38.917359, zoom = 7.5) %>%
+      addPolygons(data = HUC8, fill = FALSE, weight = 2, color = "steelblue", group = "HUC8") %>%
+      addPolygons(data = PRB, fill = FALSE, weight = 3, color = "navy", group = "Potomac River Watershed") %>%
+      addPolygons(data = ches, fill = FALSE, weight = 3, color = "navy", group = "Chesapeake Bay Watershed") %>%
+      addCircles(data = gage, lng = ~LONDD, lat = ~LATDD, group = "USGS Stream Gage",
+                 popup=paste('<strong>Name:</strong>', gage$STATION_NM, "<br>",
+                             '<strong>ID:</strong>', gage$STATION_NO)) %>%
+      addLayersControl(overlayGroups = c("Potomac River Watershed", "Chesapeake Bay Watershed", "HUC8", "USGS Stream Gage"), position = "bottomleft",
+                       options = layersControlOptions(collapsed = FALSE)) %>%
+      hideGroup("Chesapeake Bay Watershed") #%>%
+    #hideGroup("USGS Stream Gage")
+  })
 
 }#end if exists
 
@@ -77,6 +177,46 @@ observeEvent(input$selected_tab,#
 
  #checks if active_data.df has data
  if(if_empty(active_data.df)){#(empty(active_data.df) == FALSE || is.na(empty(active_data.df))){
+  
+   #check if chla.df has data
+   if(if_empty(salinity.df)){  
+   
+   #salinity map proxy
+   proxy <- leafletProxy("map_salinity", data = salinity.df$measurevalue) %>%
+     clearMarkers() %>%
+     addCircleMarkers(data = salinity.df,
+                      lng = ~longitude,
+                      lat = ~latitude,
+                      radius = 6,
+                      #fillColor = ~ "Blues",
+                      fillColor = ~ pal(salinity.df$measurevalue),
+                      #pal(active_data.df$measurevalue),
+                      stroke = TRUE,
+                      weight = 1,
+                      color = "black",
+                      fillOpacity = 1,
+                      label = paste(as.Date(salinity.df$sampledate)),
+                      popup=paste('<strong>Date:</strong>', salinity.df$sampledate, "<br>",
+                                  '<strong>Value:</strong>', salinity.df$measurevalue, "<br>",
+                                  '<strong>Unit:</strong>', salinity.df$unit, "<br>",
+                                  '<strong>Station:</strong>', salinity.df$station, "<br",
+                                  '<strong>Latitude:</strong>', formatC(salinity.df$latitude, digits = 4, format = "f"), "<br",
+                                  '<strong>Longitude:</strong>', formatC(salinity.df$longitude, digits = 4, format = "f")),
+                      options = popupOptions(maxHeight = 50)
+     )
+   
+   #add parameters and legend
+   proxy <- leafletProxy("map_salinity", data = salinity.df) %>%
+     clearControls() %>%
+     addLegend(#"bottomright"
+       "topleft", pal = pal,
+       values = salinity.df$measurevalue,
+       #values =select_data()$measurevalue,
+       #title = as.character(input$data),
+       opacity = 1)
+   #end salinity map proxy
+   
+ }#end of check if salinity.df has data
    
    
      
@@ -118,6 +258,8 @@ observeEvent(input$selected_tab,#
        #title = as.character(input$data),
        opacity = 1)
    #end chla map proxy
+   
+   
      
 
    
