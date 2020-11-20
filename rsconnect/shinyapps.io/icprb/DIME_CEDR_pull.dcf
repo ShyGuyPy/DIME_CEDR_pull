@@ -1,0 +1,12 @@
+name: DIME_CEDR_pull
+title: DIME_CEDR_pull
+username:
+account: icprb
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3269916
+bundleId: 3882815
+url: https://icprb.shinyapps.io/DIME_CEDR_pull/
+when: 1605832779.33032
+asMultiple: FALSE
+asStatic: FALSE

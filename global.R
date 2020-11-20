@@ -1,7 +1,11 @@
 #--------------paths and packages----------------------
-#source("code/global/import_packages.R", local = TRUE)
-source("code/global/load_packages.R", local = TRUE)
-source("CEDR_inputs.R", local = TRUE)
+# Load packages ---------------------------------------------------------------  
+# Use this one when not publishing to shinyapp.io, comment out when publishing:
+#source("code/global/load_packages.R", local = TRUE)
+# Use this one when publishing, can comment out otherwise:
+source("code/global/import_packages.R", local = TRUE)
+
+source("config/CEDR_inputs.R", local = TRUE)
 source("config/paths.R", local = TRUE)
 #------------------------------------------------------
 
@@ -15,7 +19,7 @@ source("code/functions/date_time_func.R", local = TRUE)
 source("code/functions/selection_vector_func.R", local = TRUE)
 source("code/functions/param_avg_func.R", local = TRUE)
 source("code/functions/summary_func.R", local = TRUE)
-#source("code/functions/map_func.R", local = TRUE)
+source("code/functions/map_func.R", local = TRUE)
 source("code/functions/check_data_func.R", local = TRUE)
 #source("code/functions/CEDR_pull_alt_func.R", local = TRUE)
 #------------------------------------------------------
@@ -143,6 +147,8 @@ PRB <- readOGR(file.path(project.dir,map_path,"PotomacBasin_Boundary_NHD2003.shp
 HUC8 <- readOGR(file.path(project.dir,map_path,"WBDHU8_PotmacBasin_Feb20162.shp"))
 ches <- readOGR(file.path(project.dir,map_path,"ChesBay.shp"))
 gage <- readOGR(file.path(project.dir,map_path,"gages_clipped.shp"))
+
+HUC12 <- readOGR(file.path(project.dir,map_path,"WBDHU12_PotmacBasin_Feb20162.shp"))
 #----------------------------------------------------------------------------------------------
 
 

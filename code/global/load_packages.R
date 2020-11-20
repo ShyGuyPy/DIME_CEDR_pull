@@ -6,6 +6,8 @@ need <- c("shiny",
           "shinythemes",
           "shinydashboard",
           "ggplot2",
+          "pryr",
+          "plyr",
           "dplyr",
           "rlang",
           "data.table",
@@ -15,7 +17,6 @@ need <- c("shiny",
           "RcppRoll",
           "tidyr",
           "lubridate",
-          "pryr",
           "zoo",
           "sp",
           "leaflet",
@@ -33,8 +34,8 @@ need <- c("shiny",
           "shinyjs",
           "EGRET",
           "dataRetrieval",
-          "leaflet.minicharts",
-          "plyr"
+          "leaflet.minicharts"
+
           ) 
 # find out which packages are installed
 ins <- installed.packages()[, 1] 

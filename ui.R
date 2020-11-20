@@ -18,8 +18,8 @@ ui <- fluidPage(useShinyjs(),
                                                  menuItem("Download Data", tabName = "download_data_tab"),
                                                  menuItem("Select Data", tabName = "select_data_tab"),
                                                  menuItem("Error Report", tabName = "error_report_tab"),
-                                                 menuItem("Summary Page", tabName = "summary_page_tab"),
-                                                 menuItem("Graph Data", tabName = "plot_data_tab"),
+                                                 # menuItem("Summary Page", tabName = "summary_page_tab"),
+                                                 # menuItem("Graph Data", tabName = "plot_data_tab"),
                                                  menuItem("Map Data", tabName = "map_data_tab")
                                                 
                                                )#end of sidebarMenu
@@ -38,19 +38,20 @@ ui <- fluidPage(useShinyjs(),
                                 
                                 tabItem(tabName = "select_data_tab",
                                         source("code/ui/select_data_ui.R", local = TRUE)$value
+                                        #  source("code/ui/test_select_data_ui.R", local = TRUE)$value
                                 ),#end of select data tabItem
                                 
                                 tabItem(tabName = "error_report_tab",
                                         source("code/ui/error_report_ui.R", local = TRUE)$value
                                 ),#end of error report tabItem
                                 
-                                tabItem(tabName = "summary_page_tab",
-                                        source("code/ui/summary_page_ui.R", local = TRUE)$value
-                                ),#end of summary page tabItem
-                                
-                                tabItem(tabName = "plot_data_tab",
-                                        source("code/ui/plot_data_ui.R", local = TRUE)$value
-                                ),#end of plot data tabItem
+                                # tabItem(tabName = "summary_page_tab",
+                                #         source("code/ui/summary_page_ui.R", local = TRUE)$value
+                                # ),#end of summary page tabItem
+                                # 
+                                # tabItem(tabName = "plot_data_tab",
+                                #         source("code/ui/plot_data_ui.R", local = TRUE)$value
+                                # ),#end of plot data tabItem
                                 
                                 tabItem(tabName = "map_data_tab",
                                         source("code/ui/map_data_ui.R", local = TRUE)$value

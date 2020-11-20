@@ -149,9 +149,9 @@ report_all_qualifiers <-  function(){
 # E---------------------------------------------
 
 #------------------------problem error report as table ----------------------------
-report_problems_table <- function(active_data){
-  active_data.df <- #active_data.df() 
-    active_data %>% #data.table::fread(paste0(active_path, "active_data.csv"),
+report_problems_table <- function(dataframe){
+  problem_data.df <- #active_data.df() 
+    dataframe %>% #data.table::fread(paste0(active_path, "active_data.csv"),
                                                                                       #data.table = FALSE) %>%
       
       mutate(error_code = problem) %>%
@@ -186,7 +186,7 @@ report_problems_table <- function(active_data){
       filter(definition != "no problem") %>%
       group_by(error_code) %>%
       group_by(parameter) %>%
-      mutate(n = n()) %>%
+      dplyr::mutate(n = n()) %>%
       ungroup() %>%
       select(parameter,
         error_code,definition, n) %>%
@@ -196,9 +196,9 @@ report_problems_table <- function(active_data){
 #------------------------end problem error report as table------------------------
 
 #------------------------qualifier error report as table ----------------------------
-report_qualifiers_table <- function(active_data){
+report_qualifiers_table <- function(dataframe){
   active_data.df <- #active_data.df() 
-    active_data %>% #data.table::fread(paste0(active_path, "active_data.csv"),
+    dataframe %>% #data.table::fread(paste0(active_path, "active_data.csv"),
                                         #data.table = FALSE) %>%
     
     mutate(error_code = qualifier) %>%
@@ -214,7 +214,7 @@ report_qualifiers_table <- function(active_data){
     filter(definition != "no qualifier") %>%
     group_by(error_code) %>%
     group_by(parameter) %>%
-    mutate(n = n()) %>%
+    dplyr::mutate(n = n()) %>%
     ungroup() %>%
     select(parameter,
            error_code,definition, n) %>%

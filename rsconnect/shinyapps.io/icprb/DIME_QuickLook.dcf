@@ -1,0 +1,12 @@
+name: DIME_QuickLook
+title: DIME_QuickLook
+username:
+account: icprb
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3269693
+bundleId: 3882870
+url: https://icprb.shinyapps.io/DIME_QuickLook/
+when: 1605834093.89745
+asMultiple: FALSE
+asStatic: FALSE
