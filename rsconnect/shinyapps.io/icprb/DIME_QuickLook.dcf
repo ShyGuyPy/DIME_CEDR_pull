@@ -5,8 +5,8 @@ account: icprb
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3269693
-bundleId: 3882870
+bundleId: 3886794
 url: https://icprb.shinyapps.io/DIME_QuickLook/
-when: 1605834093.89745
+when: 1605916212.16099
 asMultiple: FALSE
 asStatic: FALSE
