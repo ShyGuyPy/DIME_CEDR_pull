@@ -13,9 +13,9 @@ CEDR_pull <- function( ) {
                                           MAIN,TRIB
                                           , sep=","),#"7,16,23,24",  #projectIds
                              
-                                  "Huc8",
+                                  "Huc12",
                                   #"Station",
-                                  paste(HUC8.vec, collapse = ","),
+                                  paste(HUC12.vec, collapse = ","),
                                   #paste(station.vec, collapse = ","),
                                   # paste(
         #                                   #these are the parameter variables declared in Functions and Variables section

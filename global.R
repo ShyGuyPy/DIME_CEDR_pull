@@ -133,7 +133,9 @@ if(file.exists(file.path(project.dir, wqdp_path, "wqdp_raw.csv"))){
 #only creates it if the CEDR url is accessible
 #this prevents the app from breaking if CEDR is down or if no internet
 #if(url.exists(CEDR_url) == TRUE){
-HUC8.vec <- wq_selection_vector()
+HUC8.vec <- HUC8_wq_selection_vector()
+
+HUC12.vec <- HUC12_wq_selection_vector()
 #}
 
 #------------------------------------------------------

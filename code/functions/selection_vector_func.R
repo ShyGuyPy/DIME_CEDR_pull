@@ -17,7 +17,7 @@ selection_vector <-  function(input1,input2,input3,num,location){
 }
 
 #this is the function currently being used in the working version
-wq_selection_vector <- function(){
+HUC8_wq_selection_vector <- function(){
   huc8.vec <- file.path(CEDR_url,
                         "LivingResources",
                         "TidalPlankton",
@@ -29,4 +29,18 @@ wq_selection_vector <- function(){
   ) %>%
     fromJSON() %>%
     pull(unique(HUCEightId))
+}
+
+HUC12_wq_selection_vector <- function(){
+  huc12.vec <- file.path(CEDR_url,
+                         "LivingResources",
+                         "TidalPlankton",
+                         "Reported",
+                         min_date,
+                         max_date,
+                         phyto_num,
+                         "Huc12"
+  ) %>%
+    fromJSON() %>%
+    pull(unique(HUCTwelveId))
 }
