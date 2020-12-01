@@ -43,7 +43,7 @@ observeEvent(input$select_data, {
       
       
     #and write to active data
-    data.table::fwrite(file.path(project.dir, active_path, "active_data.csv"))
+    data.table::fwrite(file.path( active_path, "active_data.csv"))
     
     #output message if data exists
     selection_state = "data was downloaded succcessfully."

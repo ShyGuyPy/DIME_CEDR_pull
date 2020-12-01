@@ -10,9 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-project.dir <- rprojroot::find_rstudio_root_file()
+#project.dir <- rprojroot::find_rstudio_root_file()
 
-print(project.dir)
+#print(project.dir)
 
 active_path <- "data/ACTIVE/"
 
@@ -61,7 +61,7 @@ active_path <- "data/ACTIVE/"
 
 ```{r}
   #assign active_data
-  active_data.df <- data.table::fread(paste0(#project.dir, 
+  active_data.df <- data.table::fread(paste0(# 
     active_path, "active_data.csv"),
                                       header = TRUE,
                                       data.table = FALSE)

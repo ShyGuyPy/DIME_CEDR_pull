@@ -5,7 +5,7 @@ observeEvent(input$download_data, {
   #   #use cedr pull function
   #   data.df <- CEDR_pull() %>%
   #     #write data to directory
-  #     data.table::fwrite(file.path(project.dir, data_path, "cedr_wq_raw.csv"))
+  #     data.table::fwrite(file.path( data_path, "cedr_wq_raw.csv"))
   #   
   #   #narrow date range of data based on users date range input
   #   data_modified.df <- data.table::fread(paste0(data_path, "cedr_wq_raw.csv"),
@@ -15,7 +15,7 @@ observeEvent(input$download_data, {
   #     
   #     to_date_time(.) %>%
   #     
-  #     data.table::fwrite(file.path(project.dir, data_path, "data_modified.csv")) #%>%
+  #     data.table::fwrite(file.path( data_path, "data_modified.csv")) #%>%
   #     
   #     #run datetime function on dataframe
   #     #to_date_time(.)
@@ -38,7 +38,7 @@ observeEvent(input$download_data, {
     #use cedr pull function
     data.df <- CEDR_pull() %>%
       #write data to directory
-      data.table::fwrite(file.path(project.dir, data_path, "data_raw.csv"))
+      data.table::fwrite(file.path( data_path, "data_raw.csv"))
     
     #narrow date range of data based on users date range input
     data_modified.df <- data.table::fread(paste0(data_path, "data_raw.csv"),
@@ -48,7 +48,7 @@ observeEvent(input$download_data, {
       
       to_date_time(.) %>%
       
-      data.table::fwrite(file.path(project.dir, data_path, "data_modified.csv")) #%>%
+      data.table::fwrite(file.path( data_path, "data_modified.csv")) #%>%
     
     #run datetime function on dataframe
     #to_date_time(.)

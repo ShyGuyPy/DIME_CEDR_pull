@@ -259,7 +259,7 @@ check_problems <- function(){
   data_problems.df <- active_data.df %>%
     filter(!is.na(problem )) %>%
   
-  data.table::fwrite(file.path(project.dir, active_path, "qa_test.csv"))
+  data.table::fwrite(file.path( active_path, "qa_test.csv"))
 
   
   qq_count <- as.numeric(sum(data_problems.df$problem == "qq"))

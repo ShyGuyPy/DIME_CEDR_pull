@@ -37,11 +37,11 @@ source("server.R", local = TRUE)
 # output$no_data_error_qualifiers <- no_data_error
 
 
-if(file.exists(paste0(#project.dir,
+if(file.exists(paste0(#
   "/",active_path, "active_data.csv"))){#"data/ACTIVE/active_data.csv")){
   
   #assign active_data
-  active_data.df <- data.table::fread(paste0(#project.dir, 
+  active_data.df <- data.table::fread(paste0(# 
     "/",active_path, "active_data.csv"),
     header = TRUE,
     data.table = FALSE)
@@ -63,12 +63,12 @@ observeEvent(#toListenReport()#
   input$selected_tab
              , {
                
-               if(file.exists(paste0(#project.dir,
+               if(file.exists(paste0(#
                  #"/",
                  active_path, "active_data.csv"))){#"data/ACTIVE/active_data.csv")){
                  
                  #assign acgive_data
-                 active_data.df <- data.table::fread(paste0(#project.dir,
+                 active_data.df <- data.table::fread(paste0(#
                  #"/", 
                  active_path, "active_data.csv"),
                                                      header = TRUE,
@@ -82,11 +82,11 @@ observeEvent(#toListenReport()#
   
   #debugging output
   problems_test <- report_problems_table(active_data.df)%>%
-    data.table::fwrite(file.path(project.dir, cedr_path, "problems.csv"))
+    data.table::fwrite(file.path( cedr_path, "problems.csv"))
   
   #debugging output
   qualifier_test <- report_qualifiers_table(active_data.df)%>%
-    data.table::fwrite(file.path(project.dir, cedr_path, "qualifiers.csv"))
+    data.table::fwrite(file.path( cedr_path, "qualifiers.csv"))
   
   
                }#end of if length != 0
@@ -99,11 +99,11 @@ observeEvent(#toListenReport()#
 # observeEvent(input$selected_tab#input$select_data
 #              , {
 #                
-#                if(file.exists(paste0(#project.dir,
+#                if(file.exists(paste0(#
 #                  active_path, "active_data.csv"))){#"data/ACTIVE/active_data.csv")){
 #                
 #                #assign acgive_data
-#                active_data.df <- data.table::fread(paste0(project.dir,active_path, "active_data.csv"),
+#                active_data.df <- data.table::fread(paste0(active_path, "active_data.csv"),
 #                                                    header = TRUE,
 #                                                    data.table = FALSE)
 #                
@@ -115,11 +115,11 @@ observeEvent(#toListenReport()#
 #                
 #                # #debugging output
 #                # problems_test <- report_problems_table(active_data.df())%>%
-#                #   data.table::fwrite(file.path(project.dir, cedr_path, "problems.csv"))
+#                #   data.table::fwrite(file.path( cedr_path, "problems.csv"))
 #                # 
 #                # #debugging output
 #                # qualifier_test <- report_qualifiers_table(active_data.df())%>%
-#                #   data.table::fwrite(file.path(project.dir, cedr_path, "qualifiers.csv"))
+#                #   data.table::fwrite(file.path( cedr_path, "qualifiers.csv"))
 #                
 #                }#end of if length != 0
 #                

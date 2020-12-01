@@ -1,9 +1,9 @@
 source("server.R", local = TRUE)
 
-if(file.exists(paste0(project.dir,active_path, "active_data.csv"))){#"data/ACTIVE/active_data.csv")){
+if(file.exists(paste0(active_path, "active_data.csv"))){#"data/ACTIVE/active_data.csv")){
   
   #assign active_data
-  active_data.df <- data.table::fread(paste0(project.dir, active_path, "active_data.csv"),
+  active_data.df <- data.table::fread(paste0( active_path, "active_data.csv"),
                                       header = TRUE,
                                       data.table = FALSE)
 }

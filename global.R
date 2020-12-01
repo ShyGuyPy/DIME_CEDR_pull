@@ -36,7 +36,7 @@ todays.date <- format(Sys.Date(), "%m-%d-%Y")
 
 
 #----------this is the apps root directory---------------
-project.dir <- rprojroot::find_rstudio_root_file()
+#project.dir <- rprojroot::find_rstudio_root_file()
 #---------------------------------------------------------
 
 #----------------date-range------------------------------
@@ -56,7 +56,7 @@ max_date = todays.date#
 #last date CEDR data was downloaded
 last_CEDR_download_date <- "no data downloaded"
 
-if(file.exists(file.path(project.dir, cedr_path, "cedr_raw.csv"))){
+if(file.exists(file.path( cedr_path, "cedr_raw.csv"))){
   data_last.df <- data.table::fread(paste0(cedr_path, "cedr_raw.csv"))
   #finds last download date
   last_CEDR_download_date <- max(data_last.df$sampledate)
@@ -69,7 +69,7 @@ if(file.exists(file.path(project.dir, cedr_path, "cedr_raw.csv"))){
 #last date NWIS data was downloaded
 last_NWIS_download_date <- "no data downloaded"
 
-if(file.exists(file.path(project.dir, nwis_path, "nwis_raw.csv"))){
+if(file.exists(file.path( nwis_path, "nwis_raw.csv"))){
   data_last.df <- data.table::fread(paste0(nwis_path, "nwis_raw.csv"))
   #finds last download date
   last_NWIS_download_date <- max(data_last.df$Date)
@@ -83,7 +83,7 @@ if(file.exists(file.path(project.dir, nwis_path, "nwis_raw.csv"))){
 #last date WQDP data was downloaded
 last_WQDP_download_date <- "no data downloaded"
 
-if(file.exists(file.path(project.dir, wqdp_path, "wqdp_raw.csv"))){
+if(file.exists(file.path( wqdp_path, "wqdp_raw.csv"))){
   # data_last.df <- data.table::fread(paste0(wqpd_path, "wqdp_raw.csv"))
   #finds last download date
   # last_WQDP_download_date <- max(data_last.df$sampledate)
@@ -145,12 +145,12 @@ HUC12.vec <- HUC12_wq_selection_vector()
 
 
 
-PRB <- readOGR(file.path(project.dir,map_path,"PotomacBasin_Boundary_NHD2003.shp"))
-HUC8 <- readOGR(file.path(project.dir,map_path,"WBDHU8_PotmacBasin_Feb20162.shp"))
-ches <- readOGR(file.path(project.dir,map_path,"ChesBay.shp"))
-gage <- readOGR(file.path(project.dir,map_path,"gages_clipped.shp"))
+PRB <- readOGR(file.path(map_path,"PotomacBasin_Boundary_NHD2003.shp"))
+HUC8 <- readOGR(file.path(map_path,"WBDHU8_PotmacBasin_Feb20162.shp"))
+ches <- readOGR(file.path(map_path,"ChesBay.shp"))
+gage <- readOGR(file.path(map_path,"gages_clipped.shp"))
 
-HUC12 <- readOGR(file.path(project.dir,map_path,"WBDHU12_PotmacBasin_Feb20162.shp"))
+HUC12 <- readOGR(file.path(map_path,"WBDHU12_PotmacBasin_Feb20162.shp"))
 #----------------------------------------------------------------------------------------------
 
 

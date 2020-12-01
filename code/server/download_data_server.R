@@ -9,7 +9,7 @@ observeEvent(input$download_cedr_data, {
     #use cedr pull function to download data
     data.df <- CEDR_pull() %>%
       #write data to directory
-      data.table::fwrite(file.path(project.dir, cedr_path, "cedr_raw.csv"))
+      data.table::fwrite(file.path( cedr_path, "cedr_raw.csv"))
     
     #increment progress bar
     incProgress(1/2) 
@@ -33,7 +33,7 @@ observeEvent(input$download_nwis_data, {
     #use nwis pull function to download data
     data.df <- NWIS_pull() %>%
       #write data to directory
-      data.table::fwrite(file.path(project.dir, nwis_path, "nwis_raw.csv"))
+      data.table::fwrite(file.path( nwis_path, "nwis_raw.csv"))
     
     #increment progress bar
     incProgress(1/2) 
