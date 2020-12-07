@@ -9,6 +9,18 @@ if(file.exists(paste0(#
                                       header = TRUE,
                                       data.table = FALSE)
   
+  #generates a list of metrics included in active_data.df
+  metrics_list <- active_data.df %>%
+     dplyr::select(parameter) %>%
+     unique %>%
+     pull(.,parameter)
+  
+  
+  #update which maps are displayed
+  updateCheckboxInput(session, 
+                      #"inCheckbox", 
+                      "select_map_metric",value = metrics_list)#c("chla", "salinity"))
+  
   salinity.df <- active_data.df %>%
     filter(parameter == "salinity")
   
@@ -97,6 +109,22 @@ observeEvent(input$selected_tab,#
                    active_path, "active_data.csv"),
                    header = TRUE,
                    data.table = FALSE)
+                 
+                 
+                 
+                 #generates a list of metrics included in active_data.df
+                 metrics_list <- active_data.df %>%
+                    dplyr::select(parameter) %>%
+                    unique %>%
+                    pull(.,parameter)
+                 
+                 #update which maps are displayed
+                 updateCheckboxInput(session, 
+                                     #"inCheckbox", 
+                                     "select_map_metric",value = metrics_list)#c("chla", "salinity"))
+                 
+                 
+                 
 
                  salinity.df <- active_data.df %>%
                    filter(parameter == "salinity")
@@ -161,7 +189,7 @@ observeEvent(input$selected_tab,#
      addLegend(#"bottomright"
        "topleft", pal = pal,
        values = salinity.df$measurevalue,
-       #values =select_data()$measurevalue,
+       #values = select_data()$measurevalue,
        #title = as.character(input$data),
        opacity = 1) %>%
      addControl(sal_title, position = "topright")
