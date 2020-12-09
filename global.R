@@ -1,9 +1,9 @@
 #--------------paths and packages----------------------
 # Load packages ---------------------------------------------------------------  
 # Use this one when not publishing to shinyapp.io, comment out when publishing:
-#source("code/global/load_packages.R", local = TRUE)
+source("code/global/load_packages.R", local = TRUE)
 # Use this one when publishing, can comment out otherwise:
-source("code/global/import_packages.R", local = TRUE)
+#source("code/global/import_packages.R", local = TRUE)
 
 source("config/CEDR_inputs.R", local = TRUE)
 source("config/paths.R", local = TRUE)
@@ -31,7 +31,8 @@ CEDR_url <- "http://datahub.chesapeakebay.net/api.JSON"
 #------------------------------------------------------
 
 #-------------------todays date-----------------------
-todays.date <- format(Sys.Date(), "%m-%d-%Y")
+todays.date <- format(Sys.Date(), "%Y-%m-%d")
+  #format(Sys.Date(), "%m-%d-%Y")
 #------------------------------------------------------
 
 
